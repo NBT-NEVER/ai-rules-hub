@@ -37,7 +37,8 @@ scripts/
 ### 3. `pull-and-deploy.ps1`
 
 - 作用：跨机器同步入口。
-- 适用：另一台电脑执行 `git pull` 后，继续构建并部署到本机 Codex 与指定 Cursor 项目。
+- 适用：另一台电脑执行 `git pull` 后，继续构建并部署到本机 Codex 与默认 Cursor 项目。
+- 默认远程 Cursor 项目路径：`I:\PYTHON\OWN_PROJECT\backup-test-cursor\workplace`
 
 ### 4. `github-push.ps1`
 
@@ -81,7 +82,7 @@ pwsh .\scripts\github-push.ps1 -CommitMessage "update skill xxx"
 ### 3. 另一台机器拉取并部署
 
 ```powershell
-pwsh .\scripts\pull-and-deploy.ps1 -ProjectPath "<你的 Cursor 项目路径>"
+pwsh .\scripts\pull-and-deploy.ps1
 ```
 
 ## 五、维护原则

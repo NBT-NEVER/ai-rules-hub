@@ -24,13 +24,7 @@
 - 默认 Cursor 项目级安装目标：`I:/STUDY/python/project/backup-test-cursor/cursor-workplace`
 - Cursor 项目级安装产物：`<ProjectPath>/AGENTS.md` 与 `<ProjectPath>/.cursor/rules`
 
-### 5. 创建与元信息参考
-
-- 新增或大改 skill 时，先读：`C:/Users/18030/.codex/skills/.system/skill-creator/SKILL.md`
-- 修改 `agents/openai.yaml` 时，再读：`C:/Users/18030/.codex/skills/.system/skill-creator/references/openai_yaml.md`
-- `.system/skill-creator` 是创建方法参考，不属于这套自定义 skill 源仓库，不要把它复制进 `src/skills`
-
-### 6. 规则边界
+### 5. 规则边界
 
 - 只纳入自定义 skill，不纳入 `.system`。
 - 以后只改 `src/`，不要手改 `dist/`，也不要手改已安装到 Codex 或 Cursor 项目里的产物。
@@ -58,7 +52,7 @@
 - `recall-thinking`
   负责复用长期经验、踩坑记录、核验方法和稳定操作链路。
 - `skill-maintainer`
-  负责维护整套 skill 体系本身，包括命名、分层、GitHub 仓库、构建脚本、安装脚本、同步部署流程、新 skill 的正确源目录落点，以及把新经验回写到 `recall-thinking`；在新增或大改 skill 时要联动参考系统 `skill-creator`。
+  负责维护整套 skill 体系本身，包括命名、分层、GitHub 仓库、构建脚本、安装脚本、同步部署流程，以及把新经验回写到 `recall-thinking`。
 
 ## 三、各层职责
 
@@ -120,14 +114,6 @@
 
 ## 四、修改时的基本判断规则
 
-预读要求：
-
-- 只要任务是新增、重构或明显修改某个 skill，先读取：
-  - `src/skills/skill-maintainer/SKILL.md`
-  - `C:/Users/18030/.codex/skills/.system/skill-creator/SKILL.md`
-- 只要任务会修改 `agents/openai.yaml`，再读取：
-  - `C:/Users/18030/.codex/skills/.system/skill-creator/references/openai_yaml.md`
-
 1. 如果是长期全局约束或总入口路由，改 `src/AGENTS.md`。
 2. 如果是某个 skill 的触发范围、适用场景、入口说明，改该 skill 的 `SKILL.md`。
 3. 如果是某个 skill 的长期细则，改该 skill 的 `references/*-rules.md`。
@@ -155,20 +141,6 @@
 
 ## 六、标准工作流
 
-### 0. 新增 skill 的正确落点、流程与同步链路
-
-1. 先读取 `src/skills/skill-maintainer/SKILL.md` 与 `C:/Users/18030/.codex/skills/.system/skill-creator/SKILL.md`。
-2. 如果会新建或修改 `agents/openai.yaml`，再读取 `C:/Users/18030/.codex/skills/.system/skill-creator/references/openai_yaml.md`。
-3. 新 skill 的唯一正确源目录落点是：`I:/STUDY/python/project/backup-test-cursor/ai-rules-hub/src/skills/<skill-name>`。
-4. 不要把新 skill 直接创建到 `dist/`、`C:/Users/18030/.codex/skills`、`<ProjectPath>/.cursor/rules` 或任何已安装产物目录。
-5. 目录结构至少包含 `SKILL.md`；如有需要，再补 `agents/openai.yaml`、`references/`、`scripts/`、`assets/`。
-6. 如果新增 skill 改变了常见入口路由、职责边界或维护说明，同时更新：
-   - `src/AGENTS.md`
-   - `src/skills/skill-maintainer/references/skill-maintainer-rules.md`
-7. 完成 `src/` 修改后，立即运行 `scripts/update-from-src.ps1`。
-8. 默认同步链路始终是：`src -> scripts/core/build/build.ps1 -> dist -> scripts/core/install/install-codex.ps1 / scripts/core/install/install-cursor-project.ps1`。
-9. 只有在确认本地同步和安装产物都正确后，才按需要继续 Git 提交或 GitHub 推送。
-
 ### 1. 本机修改并本地生效
 
 1. 只修改 `src/` 下的源文件。
@@ -194,19 +166,14 @@
 
 第二台机器仓库路径固定为：
 
-- `I:/PYTHON/OWN_PROJECT/backup-test-cursor/ai-rules-hub`
-
-第二台机器默认 Cursor 项目路径固定为：
-
-- `I:/PYTHON/OWN_PROJECT/backup-test-cursor/workplace`
+- `I:/PYTHON/OWN_PROJECT/ai-rules-hub`
 
 标准动作：
 
 1. `git pull`
 2. 运行 `scripts/core/build/build.ps1`
 3. 如果该机安装了 Codex，运行 `scripts/core/install/install-codex.ps1`
-4. 如果要让默认 Cursor 项目生效，可直接运行 `scripts/pull-and-deploy.ps1`。
-5. 如果要让其它 Cursor 项目生效，运行 `scripts/core/install/install-cursor-project.ps1 -ProjectPath <项目路径>`
+4. 如果要让某个 Cursor 项目生效，运行 `scripts/core/install/install-cursor-project.ps1 -ProjectPath <项目路径>`
 
 ### 4. Cursor 项目级安装
 
@@ -255,12 +222,11 @@
 
 执行逻辑：
 
-1. 先按预读要求读取 `skill-maintainer` 与系统 `skill-creator`；如涉及 `openai.yaml`，再读 `openai_yaml.md`。
-2. 判断本次需求属于 `SKILL.md`、`references/*-rules.md`、`agents/openai.yaml`、`src/AGENTS.md` 还是 `scripts/*.ps1`。
-3. 只修改 `src/`。
-4. 修改后立即执行 `scripts/update-from-src.ps1`。
-5. 核对 Codex 安装目录和默认 Cursor 项目目录中的产物是否已更新。
-6. 如需长期保留，再执行 Git 提交与推送。
+1. 判断本次需求属于 `SKILL.md`、`references/*-rules.md`、`agents/openai.yaml`、`src/AGENTS.md` 还是 `scripts/*.ps1`。
+2. 只修改 `src/`。
+3. 修改后立即执行 `scripts/update-from-src.ps1`。
+4. 核对 Codex 安装目录和默认 Cursor 项目目录中的产物是否已更新。
+5. 如需长期保留，再执行 Git 提交与推送。
 
 ### 3. 渠道二：反思总结渠道
 
@@ -300,7 +266,6 @@
 - 删除自定义 skill
 - 重命名自定义 skill
 - 调整 skill 职责定位
-- 调整新增 skill 的默认落点、标准目录结构或预读要求
 - 修改 `src -> dist -> install` 这条链路
 - 增加、删除或重构构建与安装脚本
 - 修改默认自动部署入口或默认 Cursor 项目路径

@@ -85,16 +85,26 @@ pwsh .\scripts\github-push.ps1 -CommitMessage "update skill xxx"
 
 第二台电脑仓库路径：
 
-- `I:\PYTHON\OWN_PROJECT\ai-rules-hub`
+- `I:\PYTHON\OWN_PROJECT\backup-test-cursor\ai-rules-hub`
+
+第二台电脑默认 Cursor 项目路径：
+
+- `I:\PYTHON\OWN_PROJECT\backup-test-cursor\workplace`
 
 标准动作：
 
 ```powershell
-pwsh .\scripts\pull-and-deploy.ps1 -ProjectPath "<你的 Cursor 项目路径>"
+pwsh .\scripts\pull-and-deploy.ps1
+```
+
+如果你要覆盖其它 Cursor 项目，可以显式传参：
+
+```powershell
+pwsh .\scripts\pull-and-deploy.ps1 -ProjectPath "<其它 Cursor 项目路径>"
 ```
 
 如果那台电脑没有 Codex，可加：
 
 ```powershell
-pwsh .\scripts\pull-and-deploy.ps1 -ProjectPath "<你的 Cursor 项目路径>" -SkipCodex
+pwsh .\scripts\pull-and-deploy.ps1 -SkipCodex
 ```

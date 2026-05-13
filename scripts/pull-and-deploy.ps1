@@ -1,5 +1,5 @@
 param(
-    [string]$ProjectPath,
+    [string]$ProjectPath = 'I:\PYTHON\OWN_PROJECT\backup-test-cursor\workplace',
     [string]$CodexRoot = 'C:\Users\18030\.codex',
     [switch]$SkipCodex
 )
