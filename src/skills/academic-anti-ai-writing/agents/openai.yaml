@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Anti-AI Writing"
+  short_description: "Reduce AI-like academic writing."
+  default_prompt: "Use $academic-anti-ai-writing when drafting or revising academic reports, papers, technical explanations, or engineering lab reports to make the text concrete, evidence-based, and less AI-like."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Paper Composer"
+  short_description: "本科软件类论文定稿改写、局部替换、图表恢复与格式收口"
+  default_prompt: "请使用 $academic-paper-composer 在我当前 working draft 上继续改稿，保留指定图表并按学校格式完成定稿与改稿说明。"

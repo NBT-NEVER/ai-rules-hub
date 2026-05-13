@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Project Rules"
+  short_description: "Apply the user's coding structure and project rules."
+  default_prompt: "Use $code-project-rules to follow the user's coding structure, project layout rules, and documentation conventions."

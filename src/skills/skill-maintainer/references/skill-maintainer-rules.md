@@ -1,0 +1,212 @@
+# Skill Maintainer Rules
+
+本文件是 `I:/STUDY/python/project/backup-test-cursor/ai-rules-hub` 这套共享 skill 规则仓库的权威维护规则。以后凡是新增、修改、重命名、安装、同步、部署、迁移自定义 skill，或把新经验写回 `recall-thinking`，都以本文件为准。
+
+## 一、当前架构与单一真源
+
+### 1. 仓库根目录
+
+- `I:/STUDY/python/project/backup-test-cursor/ai-rules-hub`
+
+### 2. 单一真源目录
+
+- 全局入口源文件：`I:/STUDY/python/project/backup-test-cursor/ai-rules-hub/src/AGENTS.md`
+- 自定义 skill 源目录：`I:/STUDY/python/project/backup-test-cursor/ai-rules-hub/src/skills`
+
+### 3. 生成产物目录
+
+- Codex 产物：`I:/STUDY/python/project/backup-test-cursor/ai-rules-hub/dist/codex`
+- Cursor 产物：`I:/STUDY/python/project/backup-test-cursor/ai-rules-hub/dist/cursor`
+
+### 4. 安装目标
+
+- Codex 安装目标：`C:/Users/18030/.codex`
+- Cursor 项目级安装目标：`<ProjectPath>/AGENTS.md` 与 `<ProjectPath>/.cursor/rules`
+
+### 5. 规则边界
+
+- 只纳入自定义 skill，不纳入 `.system`。
+- 以后只改 `src/`，不要手改 `dist/`，也不要手改已安装到 Codex 或 Cursor 项目里的产物。
+- 正确路径始终是：`src -> build -> dist -> install`。
+
+## 二、当前自定义 skill 清单与职责介绍
+
+以后只要修改任意 skill，输出中都必须先列出当前受管 skill 清单，并对本次相关 skill 给出详细介绍，再说明修改动作。
+
+当前受管自定义 skill：
+
+- `academic-anti-ai-writing`
+  负责学术报告、论文、实验报告、正式工科说明等中文正式文本的降模板化、降 AI 味、增强证据边界与工程细节表达。
+- `academic-paper-composer`
+  负责基于真实项目和既有草稿完成本科软件/计算机类论文正文重写、定稿整理、截图替换和最终交付。
+- `academic-paper-strategist`
+  负责基于真实项目证据规划本科软件/计算机类论文的大纲、证据映射、章节重写范围和配图方案。
+- `chinese-encoding-guard`
+  负责中文读写、防乱码、UTF-8 约束、中文中间文件链路与临时目录管理。
+- `code-project-rules`
+  负责 Python 项目结构、路径管理、中文注释、README、requirements 和工程交付规范。
+- `lab-report-writer`
+  负责实验报告、算法说明、README 式项目介绍、方法说明、实现逻辑概述和结果分析等中文说明性技术写作。
+- `recall-thinking`
+  负责复用长期经验、踩坑记录、核验方法和稳定操作链路。
+- `skill-maintainer`
+  负责维护整套 skill 体系本身，包括命名、分层、GitHub 仓库、构建脚本、安装脚本、同步部署流程，以及把新经验回写到 `recall-thinking`。
+
+## 三、各层职责
+
+### 1. `src/AGENTS.md`
+
+作用：
+
+- 存放长期全局约束
+- 存放常见场景到 skill 的入口路由
+- 指明哪些场景优先命中哪些 skill
+
+不要写入：
+
+- 单个 skill 的大段细则
+- 构建脚本实现细节
+- 某类规则的完整 references 内容
+
+### 2. `src/skills/<skill>/SKILL.md`
+
+作用：
+
+- 定义 skill 名称
+- 定义触发描述
+- 定义命中后的读取入口
+
+要求：
+
+- 重点描述“什么时候该用这个 skill”
+- 不要把所有长期细则堆进这里
+- 触发描述需要覆盖相邻高频场景，避免写得过窄
+
+### 3. `src/skills/<skill>/references/*-rules.md`
+
+作用：
+
+- 存放该 skill 的长期细则
+- 作为真正的维护主文件
+
+要求：
+
+- 职责单一
+- 便于长期人工维护
+- 不混入无关 skill 的规则
+
+### 4. `src/skills/<skill>/agents/openai.yaml`
+
+作用：
+
+- 保留 Codex 侧 UI 元信息
+- 作为源仓库中该 skill 的元数据组成部分
+
+### 5. `scripts/*.ps1`
+
+作用：
+
+- 完成构建、安装、同步、部署
+- 不承载 skill 业务规则文本
+
+## 四、修改时的基本判断规则
+
+1. 如果是长期全局约束或总入口路由，改 `src/AGENTS.md`。
+2. 如果是某个 skill 的触发范围、适用场景、入口说明，改该 skill 的 `SKILL.md`。
+3. 如果是某个 skill 的长期细则，改该 skill 的 `references/*-rules.md`。
+4. 如果是 Codex 展示名称或界面元信息，改该 skill 的 `agents/openai.yaml`。
+5. 如果是构建、安装、同步、部署流程，改 `scripts/*.ps1`，必要时同步更新本文件。
+6. 如果是自定义 skill 名称、目录结构或职责变化，同时更新：
+   - `src/AGENTS.md`
+   - 对应 skill 的 `SKILL.md`
+   - 必要时相关 skill 的 `references/*-rules.md`
+   - 本文件
+7. 如果是本轮经验、踩坑、错误路径、验证方法的长期沉淀，由本 skill 负责流程控制，并把内容写到：
+   - `src/skills/recall-thinking/references/recall-rules.md`
+
+## 五、修改 skill 时的输出要求
+
+只要任务涉及 skill 的新增、删除、重命名、安装、修改、同步、下载或部署，输出中必须包含以下内容：
+
+1. 当前受管 skill 清单。
+2. 与本次任务直接相关的 skill 详细介绍。
+3. 修改了哪些文件。
+4. 为什么应该修改这些文件而不是其它层。
+5. 新增、删除或改写了哪些规则。
+6. 如果涉及重命名、结构调整或职责调整，如何同步更新了 `src/AGENTS.md` 和本文件。
+7. 如果涉及部署，说明 build、install、Cursor 项目安装分别做了什么。
+
+## 六、标准工作流
+
+### 1. 本机修改并本地生效
+
+1. 只修改 `src/` 下的源文件。
+2. 运行 `scripts/build.ps1`。
+3. 如需让本机 Codex 立即生效，运行 `scripts/install-codex.ps1`。
+4. 如需让某个 Cursor 项目立即生效，运行 `scripts/install-cursor-project.ps1 -ProjectPath <项目路径>`。
+5. 如需本机一键完成构建与安装，运行 `scripts/sync-local.ps1 -ProjectPath <项目路径>`。
+
+### 2. 发布到 GitHub
+
+1. 完成本地修改与必要验证。
+2. 运行构建与本地安装脚本。
+3. `git add .`
+4. `git commit -m "update skill xxx"`
+5. `git push`
+
+### 3. 另一台机器拉取并部署
+
+第二台机器仓库路径固定为：
+
+- `I:/PYTHON/OWN_PROJECT/ai-rules-hub`
+
+标准动作：
+
+1. `git pull`
+2. 运行 `scripts/build.ps1`
+3. 如果该机安装了 Codex，运行 `scripts/install-codex.ps1`
+4. 如果要让某个 Cursor 项目生效，运行 `scripts/install-cursor-project.ps1 -ProjectPath <项目路径>`
+
+### 4. Cursor 项目级安装
+
+当前约定只做 Cursor 项目级安装，不做全局覆盖所有项目。
+
+安装目标：
+
+- `<ProjectPath>/AGENTS.md`
+- `<ProjectPath>/.cursor/rules/*.mdc`
+
+规则：
+
+- 由 `dist/cursor/project-template` 统一生成
+- 安装脚本负责覆盖本仓库管理的规则文件
+- 不手改项目中的生成产物，改动应回到 `src/`
+
+## 七、构建与安装约束
+
+1. `build.ps1` 只负责从 `src/` 生成 `dist/`，不直接安装到用户目录。
+2. `install-codex.ps1` 只负责安装到 `C:/Users/18030/.codex`。
+3. `install-cursor-project.ps1` 只负责安装到指定 Cursor 项目。
+4. `sync-local.ps1` 负责串联本机构建与安装。
+5. 产物目录 `dist/` 允许被重建覆盖，不应手工维护。
+6. 如果 skill 被重命名，安装脚本应负责清理旧的受管目录，例如从 `codex-skill-maintainer` 迁移到 `skill-maintainer`。
+
+## 八、必须同步更新本文件的场景
+
+以下任一情况发生时，必须同步检查并按需更新本文件：
+
+- 新增自定义 skill
+- 删除自定义 skill
+- 重命名自定义 skill
+- 调整 skill 职责定位
+- 修改 `src -> dist -> install` 这条链路
+- 增加、删除或重构构建与安装脚本
+- 改变 Codex 或 Cursor 的安装策略
+
+## 九、禁止项
+
+1. 不要直接手改 `dist/`。
+2. 不要直接手改 `C:/Users/18030/.codex/skills` 中受管 skill 的安装产物，除非是在调试安装脚本且之后会回写 `src/`。
+3. 不要把 `.system` 技能混入这套自定义规则仓库。
+4. 不要在没有同步更新 `src/AGENTS.md` 与本文件的情况下重命名或重构 skill。
+5. 除非用户明确要求，否则不要推送到 GitHub；默认由用户手动执行 `git push`。

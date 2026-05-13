@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Paper Strategist"
+  short_description: "本科软件类论文规划、证据映射、热点定位与改稿范围设计"
+  default_prompt: "请使用 $academic-paper-strategist 基于当前项目、学校模板与检测报告生成证据映射、keep/rewrite/delete 矩阵和定稿规划。"

@@ -1,0 +1,33 @@
+# 全局入口说明
+
+本文件只保留长期全局约束和常用 skill 路由。具体细则优先放到对应 skill，不在这里重复展开。
+
+## 全局约束
+
+- 默认使用中文交流，除非我明确要求英文。
+- 回答应直接、清晰、少空话，优先给可执行结果。
+- 不要擅自编造缺失信息；如果关键信息不足，应明确指出缺口。
+- 处理代码任务时，先尊重当前仓库已有风格，再应用我的长期规则。
+- 处理写作任务时，先依据我提供的原始材料输出，不要脱离代码或实验要求空泛发挥。
+- 只要安装、新增、删除、重命名、重构或调整 `skills` 下任意 skill，必须同步检查并按需更新本文件，以及 `skills/skill-maintainer/references/skill-maintainer-rules.md`。
+
+## Skill 路由
+
+- 中文内容读写、防乱码、中文抽取/转存/写回、可复制到 Word 的中文材料：`skills/chinese-encoding-guard`
+- 代码编写、改代码、工程整理、Python 项目搭建、路径管理、中文注释规范、README 与 requirements 整理：`skills/code-project-rules`
+- 实验报告、算法说明、方法说明、实现逻辑概述、课程式技术说明、结果分析、README 式中文项目介绍：`skills/lab-report-writer`
+- 学术报告、论文、摘要、结论、正式工科说明的降 AI 味、降模板化改写：`skills/academic-anti-ai-writing`
+- 基于真实项目做本科论文大纲、证据映射、章节规划、配图规划、保留/重写范围判断：`skills/academic-paper-strategist`
+- 基于真实项目和已有草稿完成本科论文正文重写、定稿整理、截图替换、最终交付：`skills/academic-paper-composer`
+- Word/docx、PowerShell 中文链路、高价值文件覆盖、批量替换、需要先复用稳定经验再动手的任务：`skills/recall-thinking`
+- 新增、安装、删除、重命名、重构、同步或维护 `skills` 下任意 skill，以及沉淀经验到 skill：`skills/skill-maintainer`
+
+## 常见组合
+
+- 代码任务涉及中文注释、中文 README、中文输出：`skills/code-project-rules` + `skills/chinese-encoding-guard`
+- 实验报告或技术说明需要减少 AI 味：`skills/lab-report-writer` + `skills/academic-anti-ai-writing` + `skills/chinese-encoding-guard`
+- 论文从项目证据出发先规划再成稿：先 `skills/academic-paper-strategist`，再 `skills/academic-paper-composer`；中文写回或 Word 落地时再加 `skills/chinese-encoding-guard` 与 `skills/recall-thinking`
+- Word/docx 或高价值文件修改同时含中文内容：`skills/chinese-encoding-guard` + `skills/recall-thinking`
+- 安装或修改任意 skill 后，需要同步检查 `C:/Users/18030/.codex/AGENTS.md` 是否补充、删减或改写入口路由：`skills/skill-maintainer`
+- 涉及 skill 的更新、下载、部署、GitHub 同步、本地安装或 Cursor 项目级安装时，优先使用：`skills/skill-maintainer`
+- 如果当前对话中的明确要求与 skill 规则冲突，以当前对话要求为准；如果仓库本地约束比 skill 更具体，优先遵守本地约束，再补充 skill 规则。

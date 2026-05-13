@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Maintainer"
+  short_description: "维护自定义 skill 体系、同步规则仓库，并处理 Codex 与 Cursor 的安装部署。"
+  default_prompt: "Use $skill-maintainer to create, update, rename, install, synchronize, or deploy shared custom skills, maintain rule layering, and write new durable lessons back into $recall-thinking."
