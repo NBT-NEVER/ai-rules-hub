@@ -21,13 +21,15 @@
 ### 4. 安装目标
 
 - Codex 安装目标：`C:/Users/18030/.codex`
-- Cursor 项目级安装目标：`<ProjectPath>/AGENTS.md` 与 `<ProjectPath>/.cursor/rules`
+- 默认 Cursor 项目级安装目标：`I:/STUDY/python/project/backup-test-cursor/cursor-workplace`
+- Cursor 项目级安装产物：`<ProjectPath>/AGENTS.md` 与 `<ProjectPath>/.cursor/rules`
 
 ### 5. 规则边界
 
 - 只纳入自定义 skill，不纳入 `.system`。
 - 以后只改 `src/`，不要手改 `dist/`，也不要手改已安装到 Codex 或 Cursor 项目里的产物。
 - 正确路径始终是：`src -> build -> dist -> install`。
+- 以后凡是反思、总结、写回经验、修改 skill、重命名 skill、增添新 skill，都必须只改 `src/`，改完后自动执行默认同步脚本，把 `src` 更新到 Codex 和默认 Cursor 项目。
 
 ## 二、当前自定义 skill 清单与职责介绍
 
@@ -106,7 +108,8 @@
 
 作用：
 
-- 完成构建、安装、同步、部署
+- 根目录入口脚本负责完成本机同步、跨机器部署和 GitHub 发布
+- `scripts/core` 下的底层脚本负责构建与安装
 - 不承载 skill 业务规则文本
 
 ## 四、修改时的基本判断规则
@@ -141,18 +144,23 @@
 ### 1. 本机修改并本地生效
 
 1. 只修改 `src/` 下的源文件。
-2. 运行 `scripts/build.ps1`。
-3. 如需让本机 Codex 立即生效，运行 `scripts/install-codex.ps1`。
-4. 如需让某个 Cursor 项目立即生效，运行 `scripts/install-cursor-project.ps1 -ProjectPath <项目路径>`。
-5. 如需本机一键完成构建与安装，运行 `scripts/sync-local.ps1 -ProjectPath <项目路径>`。
+2. 运行默认同步脚本 `scripts/update-from-src.ps1`。
+3. 默认同步脚本必须自动完成：
+   - `scripts/core/build/build.ps1`
+   - `scripts/core/install/install-codex.ps1`
+   - `scripts/core/install/install-cursor-project.ps1`，目标固定为默认 Cursor 项目路径
+4. 只有在确实需要覆盖其它 Cursor 项目时，才额外手动执行 `scripts/core/install/install-cursor-project.ps1 -ProjectPath <其它项目路径>`。
 
 ### 2. 发布到 GitHub
 
 1. 完成本地修改与必要验证。
-2. 运行构建与本地安装脚本。
-3. `git add .`
-4. `git commit -m "update skill xxx"`
-5. `git push`
+2. 运行 `scripts/github-push.ps1 -CommitMessage "update skill xxx"`。
+3. `github-push.ps1` 必须自动完成：
+   - `scripts/update-from-src.ps1`
+   - `git add .`
+   - `git commit`
+   - `git push`
+4. 如果工作区没有可提交的变化，脚本应停止提交并明确提示。
 
 ### 3. 另一台机器拉取并部署
 
@@ -163,9 +171,9 @@
 标准动作：
 
 1. `git pull`
-2. 运行 `scripts/build.ps1`
-3. 如果该机安装了 Codex，运行 `scripts/install-codex.ps1`
-4. 如果要让某个 Cursor 项目生效，运行 `scripts/install-cursor-project.ps1 -ProjectPath <项目路径>`
+2. 运行 `scripts/core/build/build.ps1`
+3. 如果该机安装了 Codex，运行 `scripts/core/install/install-codex.ps1`
+4. 如果要让某个 Cursor 项目生效，运行 `scripts/core/install/install-cursor-project.ps1 -ProjectPath <项目路径>`
 
 ### 4. Cursor 项目级安装
 
@@ -181,17 +189,76 @@
 - 由 `dist/cursor/project-template` 统一生成
 - 安装脚本负责覆盖本仓库管理的规则文件
 - 不手改项目中的生成产物，改动应回到 `src/`
+- 根目录入口脚本保留分层，底层构建与安装脚本统一收纳到 `scripts/core` 分类目录。
 
-## 七、构建与安装约束
+## 七、自动执行与双渠道更新逻辑
 
-1. `build.ps1` 只负责从 `src/` 生成 `dist/`，不直接安装到用户目录。
-2. `install-codex.ps1` 只负责安装到 `C:/Users/18030/.codex`。
-3. `install-cursor-project.ps1` 只负责安装到指定 Cursor 项目。
-4. `sync-local.ps1` 负责串联本机构建与安装。
-5. 产物目录 `dist/` 允许被重建覆盖，不应手工维护。
-6. 如果 skill 被重命名，安装脚本应负责清理旧的受管目录，例如从 `codex-skill-maintainer` 迁移到 `skill-maintainer`。
+### 1. 默认自动执行脚本
 
-## 八、必须同步更新本文件的场景
+- 默认脚本：`scripts/update-from-src.ps1`
+- 默认用途：只要 `src/` 中任何受管 skill 或 `src/AGENTS.md` 发生变化，就把最新规则自动同步到本机 Codex 与默认 Cursor 项目。
+- 默认目标：
+  - Codex：`C:/Users/18030/.codex`
+  - Cursor：`I:/STUDY/python/project/backup-test-cursor/cursor-workplace`
+
+### 1.1 GitHub 发布脚本
+
+- 发布脚本：`scripts/github-push.ps1`
+- 用途：在本机完成默认同步后，把当前仓库暂存、提交并推送到 GitHub。
+- 默认顺序：
+  - `update-from-src.ps1`
+  - `git add .`
+  - `git commit`
+  - `git push -u origin <当前分支>`
+
+### 2. 渠道一：skill 更新渠道
+
+适用场景：
+
+- 新增 skill
+- 修改已有 skill
+- 重命名 skill
+- 调整 skill 触发描述、规则细则、脚本、路由
+
+执行逻辑：
+
+1. 判断本次需求属于 `SKILL.md`、`references/*-rules.md`、`agents/openai.yaml`、`src/AGENTS.md` 还是 `scripts/*.ps1`。
+2. 只修改 `src/`。
+3. 修改后立即执行 `scripts/update-from-src.ps1`。
+4. 核对 Codex 安装目录和默认 Cursor 项目目录中的产物是否已更新。
+5. 如需长期保留，再执行 Git 提交与推送。
+
+### 3. 渠道二：反思总结渠道
+
+适用场景：
+
+- 用户要求“总结经验到 skill”
+- 用户要求“把这次踩坑沉淀下来”
+- 用户要求“把反思写回长期规则”
+
+执行逻辑：
+
+1. 优先读取 `src/skills/recall-thinking/references/recall-rules.md`。
+2. 把经验主内容写回 `src/skills/recall-thinking/references/recall-rules.md`。
+3. 如果这次反思改变了维护方式、同步方式、触发范围或部署规则，再同步修改：
+   - `src/skills/skill-maintainer/SKILL.md`
+   - `src/skills/skill-maintainer/references/skill-maintainer-rules.md`
+   - 必要时 `src/AGENTS.md`
+4. 修改后立即执行 `scripts/update-from-src.ps1`。
+5. 再说明这次经验属于“仅经验扩充”还是“经验扩充 + 维护流程变更”。
+
+## 八、构建与安装约束
+
+1. `scripts/core/build/build.ps1` 只负责从 `src/` 生成 `dist/`，不直接安装到用户目录。
+2. `scripts/core/install/install-codex.ps1` 只负责安装到 `C:/Users/18030/.codex`。
+3. `scripts/core/install/install-cursor-project.ps1` 只负责安装到指定 Cursor 项目。
+4. `sync-local.ps1` 与 `update-from-src.ps1` 负责串联本机构建与安装。
+5. `update-from-src.ps1` 应作为默认入口，优先用于 skill 更新与反思总结后的自动部署。
+6. `github-push.ps1` 负责串联默认同步与 GitHub 发布，不应绕过 `update-from-src.ps1` 直接推送未同步的源改动。
+7. 产物目录 `dist/` 允许被重建覆盖，不应手工维护。
+8. 如果 skill 被重命名，安装脚本应负责清理旧的受管目录，例如从 `codex-skill-maintainer` 迁移到 `skill-maintainer`。
+
+## 九、必须同步更新本文件的场景
 
 以下任一情况发生时，必须同步检查并按需更新本文件：
 
@@ -201,12 +268,13 @@
 - 调整 skill 职责定位
 - 修改 `src -> dist -> install` 这条链路
 - 增加、删除或重构构建与安装脚本
+- 修改默认自动部署入口或默认 Cursor 项目路径
 - 改变 Codex 或 Cursor 的安装策略
 
-## 九、禁止项
+## 十、禁止项
 
 1. 不要直接手改 `dist/`。
 2. 不要直接手改 `C:/Users/18030/.codex/skills` 中受管 skill 的安装产物，除非是在调试安装脚本且之后会回写 `src/`。
 3. 不要把 `.system` 技能混入这套自定义规则仓库。
 4. 不要在没有同步更新 `src/AGENTS.md` 与本文件的情况下重命名或重构 skill。
-5. 除非用户明确要求，否则不要推送到 GitHub；默认由用户手动执行 `git push`。
+5. 除非用户明确要求，否则不要推送到 GitHub；需要推送时优先使用 `scripts/github-push.ps1`。

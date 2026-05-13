@@ -1,5 +1,5 @@
 param(
-    [string]$ProjectPath,
+    [string]$ProjectPath = 'I:\STUDY\python\project\backup-test-cursor\cursor-workplace',
     [string]$CodexRoot = 'C:\Users\18030\.codex'
 )
 
@@ -8,11 +8,11 @@ $ErrorActionPreference = 'Stop'
 
 $scriptRoot = $PSScriptRoot
 
-& (Join-Path $scriptRoot 'build.ps1')
-& (Join-Path $scriptRoot 'install-codex.ps1') -CodexRoot $CodexRoot
+& (Join-Path $scriptRoot 'core\build\build.ps1')
+& (Join-Path $scriptRoot 'core\install\install-codex.ps1') -CodexRoot $CodexRoot
 
 if ($ProjectPath) {
-    & (Join-Path $scriptRoot 'install-cursor-project.ps1') -ProjectPath $ProjectPath
+    & (Join-Path $scriptRoot 'core\install\install-cursor-project.ps1') -ProjectPath $ProjectPath
 }
 
 Write-Output 'SYNC_LOCAL_COMPLETE'

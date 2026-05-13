@@ -21,14 +21,14 @@ finally {
     Pop-Location
 }
 
-& (Join-Path $PSScriptRoot 'build.ps1')
+& (Join-Path $PSScriptRoot 'core\build\build.ps1')
 
 if (-not $SkipCodex) {
-    & (Join-Path $PSScriptRoot 'install-codex.ps1') -CodexRoot $CodexRoot
+    & (Join-Path $PSScriptRoot 'core\install\install-codex.ps1') -CodexRoot $CodexRoot
 }
 
 if ($ProjectPath) {
-    & (Join-Path $PSScriptRoot 'install-cursor-project.ps1') -ProjectPath $ProjectPath
+    & (Join-Path $PSScriptRoot 'core\install\install-cursor-project.ps1') -ProjectPath $ProjectPath
 }
 
 Write-Output 'PULL_AND_DEPLOY_COMPLETE'

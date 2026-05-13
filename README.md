@@ -17,11 +17,17 @@ ai-rules-hub/
     codex/
     cursor/
   scripts/
-    build.ps1
-    install-codex.ps1
-    install-cursor-project.ps1
     sync-local.ps1
+    update-from-src.ps1
     pull-and-deploy.ps1
+    github-push.ps1
+    ps1-readme.md
+    core/
+      build/
+        build.ps1
+      install/
+        install-codex.ps1
+        install-cursor-project.ps1
 ```
 
 ## 单一真源原则
@@ -44,13 +50,26 @@ ai-rules-hub/
 
 ## 本机修改并本地生效
 
+以后凡是修改 skill、反思总结写回 skill、增添新 skill，都只改 `src/`，然后直接运行默认同步脚本：
+
 ```powershell
-pwsh .\scripts\build.ps1
-pwsh .\scripts\install-codex.ps1
-pwsh .\scripts\install-cursor-project.ps1 -ProjectPath "I:\STUDY\python\project\backup-test-cursor\cursor-workplace"
+pwsh .\scripts\update-from-src.ps1
 ```
 
-或使用一键命令：
+这个脚本会自动把 `src` 更新到：
+
+- `C:\Users\18030\.codex`
+- `I:\STUDY\python\project\backup-test-cursor\cursor-workplace`
+
+如果你还想手动分步执行，可以用：
+
+```powershell
+pwsh .\scripts\core\build\build.ps1
+pwsh .\scripts\core\install\install-codex.ps1
+pwsh .\scripts\core\install\install-cursor-project.ps1 -ProjectPath "I:\STUDY\python\project\backup-test-cursor\cursor-workplace"
+```
+
+或使用原有一键命令：
 
 ```powershell
 pwsh .\scripts\sync-local.ps1 -ProjectPath "I:\STUDY\python\project\backup-test-cursor\cursor-workplace"
@@ -59,9 +78,7 @@ pwsh .\scripts\sync-local.ps1 -ProjectPath "I:\STUDY\python\project\backup-test-
 ## 推送到 GitHub
 
 ```powershell
-git add .
-git commit -m "update skill xxx"
-git push
+pwsh .\scripts\github-push.ps1 -CommitMessage "update skill xxx"
 ```
 
 ## 第二台电脑拉取并部署

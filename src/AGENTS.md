@@ -30,4 +30,5 @@
 - Word/docx 或高价值文件修改同时含中文内容：`skills/chinese-encoding-guard` + `skills/recall-thinking`
 - 安装或修改任意 skill 后，需要同步检查 `C:/Users/18030/.codex/AGENTS.md` 是否补充、删减或改写入口路由：`skills/skill-maintainer`
 - 涉及 skill 的更新、下载、部署、GitHub 同步、本地安装或 Cursor 项目级安装时，优先使用：`skills/skill-maintainer`
+- 涉及反思总结写回 skill、沉淀新经验、增添新 skill，或需要把 `src` 自动同步到 Codex 和 Cursor 项目时，优先使用：`skills/skill-maintainer`
 - 如果当前对话中的明确要求与 skill 规则冲突，以当前对话要求为准；如果仓库本地约束比 skill 更具体，优先遵守本地约束，再补充 skill 规则。

@@ -6,7 +6,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 function Get-RepoRoot {
-    return (Split-Path -Parent $PSScriptRoot)
+    return (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
 }
 
 $repoRoot = Get-RepoRoot
