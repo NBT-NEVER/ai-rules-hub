@@ -1,6 +1,6 @@
 # ai-rules-hub
 
-这个仓库是你自定义 skill 的单一规则源，用于同时服务：
+自定义 skill 的单一规则源，用于同时服务：
 
 - Codex：`C:/Users/18030/.codex`
 - Cursor：项目级 `AGENTS.md` 与 `.cursor/rules/*.mdc`
