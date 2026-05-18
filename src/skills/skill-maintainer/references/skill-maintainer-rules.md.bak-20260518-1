@@ -58,8 +58,6 @@
   负责 Python 项目结构、路径管理、中文注释、README、requirements 和工程交付规范。
 - `lab-report-writer`
   负责实验报告、算法说明、README 式项目介绍、方法说明、实现逻辑概述和结果分析等中文说明性技术写作。
-- `literature-downloader`
-  负责中文文献检索、论文筛选、合法全文获取、批量采集、DOI/PMID 查询、影响因子/分区核验、下载日志整理，以及 Zotero/BibTeX 相关整理；明确禁止绕过付费墙或盗版下载。
 - `recall-thinking`
   负责复用长期经验、踩坑记录、核验方法和稳定操作链路。
 - `skill-maintainer`
@@ -143,12 +141,7 @@
    - 对应 skill 的 `SKILL.md`
    - 必要时相关 skill 的 `references/*-rules.md`
    - 本文件
-7. 如果是从外部仓库安装 skill 进入这套受管体系，同时检查：
-   - 目录名是否与 skill 的规范名称一致
-   - 是否需要保留或清理无关的仓库辅助文件
-   - `src/AGENTS.md` 是否需要补充入口路由
-   - 当前受管 skill 清单是否需要补充该 skill
-8. 如果是本轮经验、踩坑、错误路径、验证方法的长期沉淀，由本 skill 负责流程控制，并把内容写到：
+7. 如果是本轮经验、踩坑、错误路径、验证方法的长期沉淀，由本 skill 负责流程控制，并把内容写到：
    - `src/skills/recall-thinking/references/recall-rules.md`
 
 ## 五、修改 skill 时的输出要求
@@ -172,13 +165,12 @@
 3. 新 skill 的唯一正确源目录落点是：`I:/STUDY/python/project/backup-test-cursor/ai-rules-hub/src/skills/<skill-name>`。
 4. 不要把新 skill 直接创建到 `dist/`、`C:/Users/18030/.codex/skills`、`<ProjectPath>/.cursor/rules` 或任何已安装产物目录。
 5. 目录结构至少包含 `SKILL.md`；如有需要，再补 `agents/openai.yaml`、`references/`、`scripts/`、`assets/`。
-6. 如果 skill 来自外部仓库，先检查目录名是否应与 `SKILL.md` frontmatter 中的 `name` 对齐；默认应优先对齐，除非用户明确要求保留外部仓库名。
-7. 如果新增 skill 改变了常见入口路由、职责边界或维护说明，同时更新：
+6. 如果新增 skill 改变了常见入口路由、职责边界或维护说明，同时更新：
    - `src/AGENTS.md`
    - `src/skills/skill-maintainer/references/skill-maintainer-rules.md`
-8. 完成 `src/` 修改后，立即运行 `scripts/update-from-src.ps1`。
-9. 默认同步链路始终是：`src -> scripts/core/build/build.ps1 -> dist -> scripts/core/install/install-codex.ps1 / scripts/core/install/install-cursor-project.ps1`。
-10. 只有在确认本地同步和安装产物都正确后，才按需要继续 Git 提交或 GitHub 推送。
+7. 完成 `src/` 修改后，立即运行 `scripts/update-from-src.ps1`。
+8. 默认同步链路始终是：`src -> scripts/core/build/build.ps1 -> dist -> scripts/core/install/install-codex.ps1 / scripts/core/install/install-cursor-project.ps1`。
+9. 只有在确认本地同步和安装产物都正确后，才按需要继续 Git 提交或 GitHub 推送。
 
 ### 1. 本机修改并本地生效
 
@@ -314,7 +306,6 @@
 以下任一情况发生时，必须同步检查并按需更新本文件：
 
 - 新增自定义 skill
-- 从外部仓库安装自定义 skill
 - 删除自定义 skill
 - 重命名自定义 skill
 - 调整 skill 职责定位

@@ -11,12 +11,6 @@
 - 处理写作任务时，先依据我提供的原始材料输出，不要脱离代码或实验要求空泛发挥。
 - 只要安装、新增、删除、重命名、重构或调整 `skills` 下任意 skill，必须同步检查并按需更新本文件，以及 `skills/skill-maintainer/references/skill-maintainer-rules.md`。
 
-## 回答语言要求
-
-- 所有的公式需要按照：“函数、公式展示，解释公式内的变量含义（其中：
-  `m`：机身质量
-  `t`：机身运动时间），并在每一个公式展示和解释完成之后，附加公式和公式内的变量的 LaTeX 代码，方便我粘贴到 MathType 内”。
-
 ## Skill 路由
 
 - 中文内容读写、防乱码、中文抽取/转存/写回、可复制到 Word 的中文材料：`skills/chinese-encoding-guard`

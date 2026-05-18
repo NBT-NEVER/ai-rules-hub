@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+
+# Generated run outputs
+downloaded_fulltexts/
+download_logs/
+已下载全文/
+内部数据_一般不用打开/
+下载报告.*
+文章地址总表.csv
+候选文献总表.csv
+高优先级文献.csv
+中优先级文献.csv
+低优先级文献.csv
+已下载文献清单.csv
+待处理文献清单.csv
+总下载日志.csv
+下载日志.csv
+补充下载日志.csv
+去重清单.csv
+配置文件.json
+检索计划.md
+下载汇总.md
+00_先看我_文件说明.txt
+README_先看我.md

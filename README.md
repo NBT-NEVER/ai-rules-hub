@@ -56,10 +56,14 @@ ai-rules-hub/
 pwsh .\scripts\update-from-src.ps1
 ```
 
-这个脚本会自动把 `src` 更新到：
+这个脚本会先判断当前是哪一台电脑，再自动把 `src` 更新到该电脑对应的 Codex 和默认 Cursor 项目：
 
-- `C:\Users\18030\.codex`
-- `I:\STUDY\python\project\backup-test-cursor\cursor-workplace`
+- 本机仓库路径 `I:\STUDY\python\project\backup-test-cursor\ai-rules-hub`：
+  - Codex：`%USERPROFILE%\.codex`
+  - Cursor：`I:\STUDY\python\project\backup-test-cursor\cursor-workplace`
+- 远程仓库路径 `I:\PYTHON\OWN_PROJECT\backup-test-cursor\ai-rules-hub`：
+  - Codex：`%USERPROFILE%\.codex`
+  - Cursor：`I:\PYTHON\OWN_PROJECT\backup-test-cursor\workplace`
 
 如果你还想手动分步执行，可以用：
 
@@ -96,6 +100,8 @@ pwsh .\scripts\github-push.ps1 -CommitMessage "update skill xxx"
 ```powershell
 pwsh .\scripts\pull-and-deploy.ps1
 ```
+
+这个脚本也会先判断当前是哪一台电脑，再自动套用对应的默认 Cursor 项目路径和 Codex 路径。
 
 如果你要覆盖其它 Cursor 项目，可以显式传参：
 

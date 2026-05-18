@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文文献下载助手"
+  short_description: "检索文献并获取合法全文"
+  default_prompt: "Use $literature-downloader 帮我按主题检索高质量文献，优先找可合法下载全文的 PDF。"

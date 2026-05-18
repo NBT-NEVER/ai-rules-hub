@@ -1,0 +1,43 @@
+name: Bug report
+description: 报告下载、报告生成、表格输出或 skill 使用问题
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请不要上传论文 PDF、账号、Cookie、token 或学校内网截图。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 问题描述
+      description: 发生了什么？期望结果是什么？
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 请写出你运行的命令或 Codex 提示词。注意脱敏本机路径。
+      placeholder: |
+        1. Use $literature-downloader ...
+        2. 运行 scripts/...
+        3. 看到 ...
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: 输出或报错
+      description: 可以粘贴脱敏后的日志片段。
+      render: text
+  - type: dropdown
+    id: compliance
+    attributes:
+      label: 是否涉及受限访问或付费墙？
+      options:
+        - 不涉及
+        - 可能涉及
+        - 不确定
+    validations:
+      required: true

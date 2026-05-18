@@ -1,8 +1,8 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$CommitMessage,
-    [string]$ProjectPath = 'I:\STUDY\python\project\backup-test-cursor\cursor-workplace',
-    [string]$CodexRoot = 'C:\Users\18030\.codex',
+    [string]$ProjectPath,
+    [string]$CodexRoot,
     [string]$Remote = 'origin'
 )
 
@@ -18,9 +18,21 @@ function Get-CurrentBranch {
     return $branch
 }
 
-& (Join-Path $PSScriptRoot 'update-from-src.ps1') -ProjectPath $ProjectPath -CodexRoot $CodexRoot
+$scriptRoot = $PSScriptRoot
+$repoRoot = Split-Path -Parent $scriptRoot
+. (Join-Path $scriptRoot 'core\env\resolve-machine-context.ps1')
+$machineContext = Resolve-MachineContext -RepoRoot $repoRoot
 
-$repoRoot = Split-Path -Parent $PSScriptRoot
+if (-not $ProjectPath) {
+    $ProjectPath = $machineContext.DefaultCursorProjectPath
+}
+
+if (-not $CodexRoot) {
+    $CodexRoot = $machineContext.DefaultCodexRoot
+}
+
+& (Join-Path $scriptRoot 'update-from-src.ps1') -ProjectPath $ProjectPath -CodexRoot $CodexRoot
+
 Push-Location $repoRoot
 try {
     git add .

@@ -1,0 +1,56 @@
+{
+  "tool_name": "literature_downloader",
+  "email": "",
+  "topic": "示例主题",
+  "years": "2021-2026",
+  "sources": {
+    "pubmed": true,
+    "pmc": true,
+    "europepmc": true,
+    "crossref": true,
+    "openalex": true,
+    "semantic_scholar": true,
+    "google_scholar_manual": true
+  },
+  "max_results_per_query": {
+    "pubmed": 100,
+    "pmc": 100,
+    "europepmc": 100,
+    "crossref": 100,
+    "openalex": 100
+  },
+  "delay_seconds": {
+    "api": 0.5,
+    "download": 0.5
+  },
+  "download": {
+    "enabled": true,
+    "timeout_seconds": 30,
+    "max_attempts_per_record": 3
+  },
+  "prefer_research_articles": true,
+  "exclude_reviews_by_default": false,
+  "include_terms": [
+    "示例关键词"
+  ],
+  "secondary_terms": [
+    "示例相关词"
+  ],
+  "exclude_terms": [
+    "editorial",
+    "commentary",
+    "news",
+    "conference abstract",
+    "patent"
+  ],
+  "queries": [
+    {
+      "name": "topic_query_1",
+      "query": "示例关键词 1"
+    },
+    {
+      "name": "topic_query_2",
+      "query": "示例关键词 2"
+    }
+  ]
+}

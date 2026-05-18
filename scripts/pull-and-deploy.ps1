@@ -1,6 +1,6 @@
 param(
-    [string]$ProjectPath = 'I:\PYTHON\OWN_PROJECT\backup-test-cursor\workplace',
-    [string]$CodexRoot = 'C:\Users\18030\.codex',
+    [string]$ProjectPath,
+    [string]$CodexRoot,
     [switch]$SkipCodex
 )
 
@@ -8,6 +8,16 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot 'core\env\resolve-machine-context.ps1')
+$machineContext = Resolve-MachineContext -RepoRoot $repoRoot
+
+if (-not $ProjectPath) {
+    $ProjectPath = $machineContext.DefaultCursorProjectPath
+}
+
+if (-not $CodexRoot) {
+    $CodexRoot = $machineContext.DefaultCodexRoot
+}
 
 if (-not (Test-Path (Join-Path $repoRoot '.git'))) {
     throw "Not a git repository: $repoRoot"
