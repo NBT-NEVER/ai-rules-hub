@@ -1,4 +1,4 @@
 interface:
   display_name: "Lab Report Writer"
-  short_description: "Write course-style lab reports from code and tasks."
-  default_prompt: "Use $lab-report-writer to draft a course-style lab report or Chinese technical explanation from the code, experiment task, and observed results."
+  short_description: "Write lab reports, formula explanations, and technical notes."
+  default_prompt: "Use $lab-report-writer to draft a course-style lab report, paper formula explanation, or Chinese technical explanation from the code, experiment task, and observed results."

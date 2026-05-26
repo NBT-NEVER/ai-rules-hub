@@ -57,7 +57,7 @@
 - `code-project-rules`
   负责 Python 项目结构、路径管理、中文注释、README、requirements 和工程交付规范。
 - `lab-report-writer`
-  负责实验报告、算法说明、README 式项目介绍、方法说明、实现逻辑概述和结果分析等中文说明性技术写作。
+  负责实验报告、算法说明、论文解读中的公式说明、README 式项目介绍、方法说明、实现逻辑概述、结果分析以及 MathType 可复用 LaTeX 配套输出等中文说明性技术写作。
 - `literature-downloader`
   负责中文文献检索、论文筛选、合法全文获取、批量采集、DOI/PMID 查询、影响因子/分区核验、下载日志整理，以及 Zotero/BibTeX 相关整理；明确禁止绕过付费墙或盗版下载。
 - `recall-thinking`
@@ -80,6 +80,7 @@
 - 单个 skill 的大段细则
 - 构建脚本实现细节
 - 某类规则的完整 references 内容
+- 公式排版模板、变量解释样式、MathType 对应 LaTeX 行序这类具体输出格式
 
 ### 2. `src/skills/<skill>/SKILL.md`
 
@@ -107,6 +108,7 @@
 - 职责单一
 - 便于长期人工维护
 - 不混入无关 skill 的规则
+- 像论文公式解读、变量说明顺序、LaTeX 代码区分离这类长期输出模板，应优先放在对应 skill 的 `references/*-rules.md`
 
 ### 4. `src/skills/<skill>/agents/openai.yaml`
 

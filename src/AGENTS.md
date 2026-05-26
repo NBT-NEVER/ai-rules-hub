@@ -13,15 +13,13 @@
 
 ## 回答语言要求
 
-- 所有的公式需要按照：“函数、公式展示，解释公式内的变量含义（其中：
-  `m`：机身质量
-  `t`：机身运动时间），并在每一个公式展示和解释完成之后，附加公式和公式内的变量的 LaTeX 代码，方便我粘贴到 MathType 内”。
+- 涉及公式解读、变量说明和 MathType 可复制的 LaTeX 代码时，优先遵循 `skills/lab-report-writer` 中的公式输出规则。
 
 ## Skill 路由
 
 - 中文内容读写、防乱码、中文抽取/转存/写回、可复制到 Word 的中文材料：`skills/chinese-encoding-guard`
 - 代码编写、改代码、工程整理、Python 项目搭建、路径管理、中文注释规范、README 与 requirements 整理：`skills/code-project-rules`
-- 实验报告、算法说明、方法说明、实现逻辑概述、课程式技术说明、结果分析、README 式中文项目介绍：`skills/lab-report-writer`
+- 实验报告、算法说明、论文解读中的公式说明、方法说明、实现逻辑概述、课程式技术说明、结果分析、README 式中文项目介绍：`skills/lab-report-writer`
 - 学术报告、论文、摘要、结论、正式工科说明的降 AI 味、降模板化改写：`skills/academic-anti-ai-writing`
 - 基于真实项目做本科论文大纲、证据映射、章节规划、配图规划、保留/重写范围判断：`skills/academic-paper-strategist`
 - 基于真实项目和已有草稿完成本科论文正文重写、定稿整理、截图替换、最终交付：`skills/academic-paper-composer`
@@ -32,7 +30,7 @@
 ## 常见组合
 
 - 代码任务涉及中文注释、中文 README、中文输出：`skills/code-project-rules` + `skills/chinese-encoding-guard`
-- 实验报告或技术说明需要减少 AI 味：`skills/lab-report-writer` + `skills/academic-anti-ai-writing` + `skills/chinese-encoding-guard`
+- 实验报告、技术说明或论文公式解读需要减少 AI 味：`skills/lab-report-writer` + `skills/academic-anti-ai-writing` + `skills/chinese-encoding-guard`
 - 论文从项目证据出发先规划再成稿：先 `skills/academic-paper-strategist`，再 `skills/academic-paper-composer`；中文写回或 Word 落地时再加 `skills/chinese-encoding-guard` 与 `skills/recall-thinking`
 - 查论文、批量筛文献、优先合法下载 PDF/HTML/XML 全文、整理 DOI/PMID/Zotero/BibTeX：`skills/literature-downloader`
 - Word/docx 或高价值文件修改同时含中文内容：`skills/chinese-encoding-guard` + `skills/recall-thinking`

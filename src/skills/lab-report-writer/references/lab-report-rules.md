@@ -33,6 +33,36 @@ When the user requests a full experiment report, write it in this order:
 
 When the user requests only one section, a short explanation, a README fragment, or an algorithm summary, reuse the same style constraints but adapt the structure to the target document instead of forcing full report headings.
 
+## Formula Explanation Rules
+
+When the user requests paper interpretation, formula explanation, variable explanation, or MathType-ready output, use this structure:
+
+1. Show the formula first in rendered display form.
+2. Explain the meaning of the whole formula in one short paragraph or one short sentence.
+3. Then use the exact label `其中：` and explain important variables or symbols one line at a time.
+4. In the readable section, use rendered symbols or plain readable forms such as `π*`、`ρ`、`s0`、`s_ob`. Do not show raw LaTeX source such as `\pi^*`、`\rho`、`s_{ob}` inside the prose or variable explanation unless the user explicitly asks for inline source.
+5. After the readable section ends, add a separate `LaTeX 代码` section. Do not mix code lines into the readable section.
+6. The LaTeX section must follow the same order as the readable section: first one line for the full formula, then one line for each explained variable or symbol.
+7. The number of LaTeX lines should match the formula line plus the number of explained variable lines, so the user can map them one by one.
+8. Each LaTeX line should contain only the formula or variable source itself so it can be pasted directly into MathType.
+9. If the user gives a stricter format in the current thread, follow the current thread.
+
+Recommended readable layout:
+
+- 公式展示
+- 公式含义
+- 其中：
+- `π*：最优策略`
+- `s0：初始状态`
+- `δ：风险容忍阈值`
+
+Recommended LaTeX layout:
+
+- full formula line
+- `\pi^*`
+- `s_0`
+- `\delta`
+
 ## Code-Related Rules
 
 - Explain the physical or mathematical meaning of all important variables.
