@@ -24,7 +24,7 @@ Apply these rules when building or restructuring a Python project for the user.
 - Each experiment must keep its own `config.py`, `main.py`, `README.md`, and `requirements.txt`.
 - Each experiment must write its own functions and its own README.
 - Each README must describe only the current experiment and must not mention later versions.
-- Remove folders that are not used by the current experiment, and do not keep unused directory configuration in `config.py`.
+- If remove folders that are not used by the current experiment, do not keep unused directory configuration in `config.py`.
 
 ## config.py Rules
 
