@@ -140,17 +140,21 @@
 3. 如果是某个 skill 的长期细则，改该 skill 的 `references/*-rules.md`。
 4. 如果是 Codex 展示名称或界面元信息，改该 skill 的 `agents/openai.yaml`。
 5. 如果是构建、安装、同步、部署流程，改 `scripts/*.ps1`，必要时同步更新本文件。
-6. 如果是自定义 skill 名称、目录结构或职责变化，同时更新：
+6. 如果是 Python 文件头、开发者署名等长期代码写作约定，至少同时检查并按需更新：
+   - `src/AGENTS.md`
+   - `src/skills/code-project-rules/references/coding-rules.md`
+   - 本文件
+7. 如果是自定义 skill 名称、目录结构或职责变化，同时更新：
    - `src/AGENTS.md`
    - 对应 skill 的 `SKILL.md`
    - 必要时相关 skill 的 `references/*-rules.md`
    - 本文件
-7. 如果是从外部仓库安装 skill 进入这套受管体系，同时检查：
+8. 如果是从外部仓库安装 skill 进入这套受管体系，同时检查：
    - 目录名是否与 skill 的规范名称一致
    - 是否需要保留或清理无关的仓库辅助文件
    - `src/AGENTS.md` 是否需要补充入口路由
    - 当前受管 skill 清单是否需要补充该 skill
-8. 如果是本轮经验、踩坑、错误路径、验证方法的长期沉淀，由本 skill 负责流程控制，并把内容写到：
+9. 如果是本轮经验、踩坑、错误路径、验证方法的长期沉淀，由本 skill 负责流程控制，并把内容写到：
    - `src/skills/recall-thinking/references/recall-rules.md`
 
 ## 五、修改 skill 时的输出要求
@@ -325,6 +329,7 @@
 - 增加、删除或重构构建与安装脚本
 - 修改默认自动部署入口或默认 Cursor 项目路径
 - 改变 Codex 或 Cursor 的安装策略
+- 调整 Python 文件头中的默认开发者署名或其他长期文件头约定
 
 ## 十、禁止项
 

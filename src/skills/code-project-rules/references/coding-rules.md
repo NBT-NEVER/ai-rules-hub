@@ -16,6 +16,16 @@ Apply these rules when building or restructuring a Python project for the user.
 - Add extra Python files only when they serve a clear responsibility.
 - `submission.py` may exist as a standalone regeneration script when the task needs repeated output generation.
 
+## Independent Experiment Rules
+
+- Versioned experiments such as `1.0` to `6.0` must be fully independent.
+- Each experiment may only keep code, parameters, functions, and documentation used by the current version.
+- Do not reserve interfaces, mode branches, or upgrade hooks for later experiments.
+- Each experiment must keep its own `config.py`, `main.py`, `README.md`, and `requirements.txt`.
+- Each experiment must write its own functions and its own README.
+- Each README must describe only the current experiment and must not mention later versions.
+- Remove folders that are not used by the current experiment, and do not keep unused directory configuration in `config.py`.
+
 ## config.py Rules
 
 - Manage all paths only in `config.py`.
@@ -28,6 +38,7 @@ Apply these rules when building or restructuring a Python project for the user.
 - Provide a function that ensures required directories exist.
 - If `config.py` is run directly, print the key paths and list file names under valid paths.
 - Output file names must also be centralized here.
+- In simple experiment projects, configure only the directories, files, and constants actually used by the current experiment.
 
 ## main.py And Module Rules
 
@@ -36,6 +47,21 @@ Apply these rules when building or restructuring a Python project for the user.
 - Read paths from `config.py` immediately after imports when needed.
 - Keep module relations clear so each script remains maintainable and, when appropriate, independently runnable.
 - Prefer structural fixes over temporary patching.
+
+## Simple And Complex Code Rules
+
+- For simple single-experiment code, keep display and output helper functions in `main.py` outside `main()`.
+- For simple single-experiment code, keep core calculation, integration, and statistics directly in `main()`, and do not extract them into extra functions when the logic is short and direct.
+- When `main()` calls display, plotting, font, or saving helper functions, add concise Chinese comments stating the purpose of the call.
+- For complex code, split only the parts with clear independent responsibility, strong reuse value, or excessive length.
+- For complex code, extracted functions or modules must still serve only the current project or current experiment, and must not become placeholders for future versions.
+- Prefer fewer files and fewer abstraction layers when the code can stay clear without them.
+
+## Import Comment Rules
+
+- When `main.py` imports variables or helper functions from other modules, add concise Chinese inline comments after the imported names.
+- Imported constant comments should state the variable meaning and unit when applicable.
+- Imported helper function comments should state the function role directly.
 
 ## Chinese Comment Rules
 
@@ -46,6 +72,9 @@ Apply these rules when building or restructuring a Python project for the user.
 - Each function docstring should include four lines: function, parameters, returns, call location.
 - Preserve existing structure, indentation, unrelated comments, and file names.
 - Every Python file should begin with a UTF-8 header block that includes developer name, file name, generation time, repeated file name line, and a short Chinese-English function summary.
+- Under the user's current long-term convention, the developer line in that header should default to the exact text `开发者: NBT`.
+- If the current conversation explicitly requires a different developer signature, follow the current conversation instead of forcing `NBT`.
+- When creating a new Python file or normalizing an existing Python file header, keep the rest of the header fields intact and only adjust the developer line when needed.
 
 ## Typical ML Workflow Rules
 
