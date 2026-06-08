@@ -41,6 +41,7 @@ When the user requests paper interpretation, formula explanation, variable expla
 2. Explain the meaning of the whole formula in one short paragraph or one short sentence.
 3. Then use the exact label `其中：` and explain important variables or symbols one line at a time.
 4. In the readable section, use rendered symbols or plain readable forms such as `π*`、`ρ`、`s0`、`s_ob`. Do not show raw LaTeX source such as `\pi^*`、`\rho`、`s_{ob}` inside the prose or variable explanation unless the user explicitly asks for inline source.
+   If a symbol has a direct rendered form, prefer that rendered form in the readable section, for example `λ` instead of `\lambda`.
 5. After the readable section ends, add a separate `LaTeX 代码` section. Do not mix code lines into the readable section.
 6. The LaTeX section must follow the same order as the readable section: first one line for the full formula, then one line for each explained variable or symbol.
 7. The number of LaTeX lines should match the formula line plus the number of explained variable lines, so the user can map them one by one.
@@ -53,12 +54,14 @@ Recommended readable layout:
 - 公式含义
 - 其中：
 - `π*：最优策略`
+- `λ：拉格朗日乘子`
 - `s0：初始状态`
 - `δ：风险容忍阈值`
 
 Recommended LaTeX layout:
 
 - full formula line
+- `\lambda`
 - `\pi^*`
 - `s_0`
 - `\delta`
