@@ -144,6 +144,7 @@
    - `src/AGENTS.md`
    - `src/skills/code-project-rules/references/coding-rules.md`
    - 本文件
+   - 如果格式发生变化涉及字段名、功能说明写法或版本号行，也按同一类长期文件头约定处理
 7. 如果是自定义 skill 名称、目录结构或职责变化，同时更新：
    - `src/AGENTS.md`
    - 对应 skill 的 `SKILL.md`
@@ -330,6 +331,7 @@
 - 修改默认自动部署入口或默认 Cursor 项目路径
 - 改变 Codex 或 Cursor 的安装策略
 - 调整 Python 文件头中的默认开发者署名或其他长期文件头约定
+- 调整 Python 文件头中的时间字段名、功能说明格式或版本号行规范
 
 ## 十、禁止项
 

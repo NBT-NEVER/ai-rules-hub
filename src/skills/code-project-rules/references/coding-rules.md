@@ -73,8 +73,12 @@ Apply these rules when building or restructuring a Python project for the user.
 - Preserve existing structure, indentation, unrelated comments, and file names.
 - Every Python file should begin with a UTF-8 header block that includes developer name, file name, generation time, repeated file name line, and a short Chinese-English function summary.
 - Under the user's current long-term convention, the developer line in that header should default to the exact text `开发者: NBT`.
-- If the current conversation explicitly requires a different developer signature, follow the current conversation instead of forcing `NBT`.
-- When creating a new Python file or normalizing an existing Python file header, keep the rest of the header fields intact and only adjust the developer line when needed.
+- In that header, use the exact field name `开发时间` instead of `生成时间`.
+- The header should keep the repeated file-name line, and should add a separate line in the exact form `版本号：x.x` when the project or experiment version is known.
+- The `功能说明` line should use a concrete Chinese functional description tied to the current file and current experiment, such as `功能说明:追踪法允许攻击区分析`；do not keep the old Chinese-English mixed summary on that line unless the current conversation explicitly asks for it.
+- For versioned experiment projects, the version number in the header should match the current experiment directory such as `1.0`、`4.2` or `6.4`.
+- If the current conversation explicitly requires a different developer signature or a different header format, follow the current conversation instead of forcing the default template.
+- When normalizing an existing Python file header, update the developer line, time field name, function-description line, and version line together so the whole header remains internally consistent.
 
 ## Typical ML Workflow Rules
 
