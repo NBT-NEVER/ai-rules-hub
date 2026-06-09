@@ -1,4 +1,4 @@
 ﻿github_repo_url=https://github.com/NBT-NEVER/ai-rules-hub.git
 local_codex_root=C:\Users\18030\.codex
-cursor_project_path=I:\PYTHON\OWN_PROJECT\backup-test-cursor\cursor-workplace
+cursor_project_path=C:\Users\18030\Desktop\新建文件夹
 local_repo_path=I:\PYTHON\OWN_PROJECT\backup-test-cursor\ai-rules-hub

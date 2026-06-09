@@ -1,4 +1,4 @@
-Set-StrictMode -Version Latest
+﻿Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Continue'
 
 $scriptRoot = $PSScriptRoot
@@ -23,16 +23,16 @@ else {
 }
 
 if (-not (Test-Path (Join-Path $repoRoot 'scripts\core\build\build.ps1'))) {
-    Write-Host ('Error: build script not found: ' + $repoRoot)
+    Write-Host ('错误：未找到构建脚本：' + $repoRoot)
     $scriptFailed = $true
 }
 
 if (-not $scriptFailed) {
-    Write-Host 'Select update target:'
-    Write-Host '1. Update Codex skills'
-    Write-Host '2. Update Cursor skills'
-    Write-Host '3. Update both Codex and Cursor skills'
-    $choice = Read-Host 'Enter 1, 2, or 3'
+    Write-Host '请选择更新目标：'
+    Write-Host '1. 更新 Codex 技能'
+    Write-Host '2. 更新 Cursor 技能'
+    Write-Host '3. 同时更新 Codex 和 Cursor 技能'
+    $choice = Read-Host '请输入 1、2 或 3'
 
     if ($choice -eq '1') {
         $codexRoot = Ensure-CodexRoot -Config $config
@@ -45,7 +45,7 @@ if (-not $scriptFailed) {
         $cursorProjectPath = Ensure-CursorProjectPath -Config $config
     }
     else {
-        Write-Host 'Error: invalid selection.'
+        Write-Host '错误：输入选项无效。'
         $scriptFailed = $true
     }
 }
@@ -53,7 +53,7 @@ if (-not $scriptFailed) {
 if (-not $scriptFailed) {
     & (Join-Path $repoRoot 'scripts\core\build\build.ps1')
     if ($global:LASTEXITCODE -ne 0) {
-        Write-Host 'Error: build.ps1 failed.'
+        Write-Host '错误：build.ps1 执行失败。'
         $scriptFailed = $true
     }
 }
@@ -61,7 +61,7 @@ if (-not $scriptFailed) {
 if (-not $scriptFailed -and ($choice -eq '1' -or $choice -eq '3')) {
     & (Join-Path $repoRoot 'scripts\core\install\install-codex.ps1') -CodexRoot $codexRoot
     if ($global:LASTEXITCODE -ne 0) {
-        Write-Host 'Error: install-codex.ps1 failed.'
+        Write-Host '错误：install-codex.ps1 执行失败。'
         $scriptFailed = $true
     }
 }
@@ -69,15 +69,15 @@ if (-not $scriptFailed -and ($choice -eq '1' -or $choice -eq '3')) {
 if (-not $scriptFailed -and ($choice -eq '2' -or $choice -eq '3')) {
     & (Join-Path $repoRoot 'scripts\core\install\install-cursor-project.ps1') -ProjectPath $cursorProjectPath
     if ($global:LASTEXITCODE -ne 0) {
-        Write-Host 'Error: install-cursor-project.ps1 failed.'
+        Write-Host '错误：install-cursor-project.ps1 执行失败。'
         $scriptFailed = $true
     }
 }
 
 if (-not $scriptFailed) {
     Write-Host ''
-    Write-Host ('Codex path: ' + $config['local_codex_root'])
-    Write-Host ('Cursor path: ' + $config['cursor_project_path'])
+    Write-Host ('Codex 路径：' + $config['local_codex_root'])
+    Write-Host ('Cursor 路径：' + $config['cursor_project_path'])
     Show-SkillSummary -RepoPath $repoRoot
     Wait-ForSuccessExit
     exit 0

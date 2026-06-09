@@ -1,4 +1,4 @@
-Set-StrictMode -Version Latest
+﻿Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 function Get-AddressStorePath {
@@ -137,17 +137,17 @@ function Get-ConfirmedAddressValue {
 
     $value = $defaultValue
     if (-not [string]::IsNullOrWhiteSpace($defaultValue)) {
-        $choice = Read-Host ($Prompt + "`nDefault path: " + $defaultValue + "`nUse default? (Y/n)")
+        $choice = Read-Host ($Prompt + "`n默认路径：" + $defaultValue + "`n是否使用默认路径？(Y/n)")
         if ($choice -match '^[Nn]$') {
-            $value = Read-Host 'Enter new path'
+            $value = Read-Host '请输入新路径'
         }
     }
     else {
-        $value = Read-Host ($Prompt + "`nEnter path")
+        $value = Read-Host ($Prompt + "`n请输入路径")
     }
 
     if ($MustNotBeEmpty -and [string]::IsNullOrWhiteSpace($value)) {
-        throw ('Path cannot be empty: ' + $StoreKey)
+        throw ('路径不能为空：' + $StoreKey)
     }
 
     $Config[$StoreKey] = $value
@@ -163,7 +163,7 @@ function Ensure-LocalRepoPath {
         [string]$ScriptsRoot
     )
 
-    return (Get-ConfirmedAddressValue -Prompt 'Script is not under ai-rules-hub\\scripts. Enter local repo path.' -StoreKey 'local_repo_path' -Config $Config -MustNotBeEmpty)
+    return (Get-ConfirmedAddressValue -Prompt '当前脚本不在 ai-rules-hub\\scripts 目录下，请输入本地仓库路径。' -StoreKey 'local_repo_path' -Config $Config -MustNotBeEmpty)
 }
 
 function Ensure-CodexRoot {
@@ -177,7 +177,7 @@ function Ensure-CodexRoot {
         Save-AddressConfig -Config $Config
     }
 
-    return (Get-ConfirmedAddressValue -Prompt 'Confirm Codex root path.' -StoreKey 'local_codex_root' -Config $Config -MustNotBeEmpty)
+    return (Get-ConfirmedAddressValue -Prompt '请确认 Codex 根目录路径。' -StoreKey 'local_codex_root' -Config $Config -MustNotBeEmpty)
 }
 
 function Ensure-CursorProjectPath {
@@ -186,7 +186,7 @@ function Ensure-CursorProjectPath {
         [System.Collections.IDictionary]$Config
     )
 
-    return (Get-ConfirmedAddressValue -Prompt 'Confirm Cursor project path.' -StoreKey 'cursor_project_path' -Config $Config -MustNotBeEmpty)
+    return (Get-ConfirmedAddressValue -Prompt '请确认 Cursor 项目路径。' -StoreKey 'cursor_project_path' -Config $Config -MustNotBeEmpty)
 }
 
 function Get-GitProxyCandidate {
@@ -204,13 +204,13 @@ function Get-GitProxyCandidate {
 function Set-GitProxyForSession {
     $proxy = Get-GitProxyCandidate
     if ([string]::IsNullOrWhiteSpace($proxy)) {
-        Write-Host 'No proxy detected. Keeping current Git proxy settings.'
+        Write-Host '未检测到代理，保持当前 Git 代理设置不变。'
         return
     }
 
     & git config --global http.proxy $proxy | Out-Null
     & git config --global https.proxy $proxy | Out-Null
-    Write-Host ('Git proxy set to: ' + $proxy)
+    Write-Host ('已设置 Git 代理：' + $proxy)
 }
 
 function Invoke-GitWithLocation {
@@ -258,7 +258,7 @@ function Get-SkillSummary {
             $name = $nameMatch.Groups[1].Value.Trim()
         }
 
-        $description = 'No description'
+        $description = '暂无描述'
         if ($descMatch.Success) {
             $description = $descMatch.Groups[1].Value.Trim()
         }
@@ -281,12 +281,12 @@ function Show-SkillSummary {
 
     $skills = Get-SkillSummary -RepoPath $RepoPath
     if ($skills.Count -eq 0) {
-        Write-Host 'No skills found to display.'
+        Write-Host '未找到可展示的技能。'
         return
     }
 
     Write-Host ''
-    Write-Host 'Skills:'
+    Write-Host '技能列表：'
     foreach ($skill in $skills) {
         Write-Host ('- {0} ({1})' -f $skill.Name, $skill.Directory)
         Write-Host ('  {0}' -f $skill.Description)
@@ -295,12 +295,12 @@ function Show-SkillSummary {
 
 function Wait-ForSuccessExit {
     Write-Host ''
-    Write-Host 'Done. Press any key to close.'
+    Write-Host '操作完成。按任意键关闭窗口。'
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 }
 
 function Wait-ForFailureExit {
     Write-Host ''
-    Write-Host 'Failed. Error output kept on screen. Press any key to close.'
+    Write-Host '操作失败。错误信息已保留在窗口中，按任意键关闭窗口。'
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 }

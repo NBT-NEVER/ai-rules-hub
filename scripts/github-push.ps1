@@ -1,4 +1,4 @@
-Set-StrictMode -Version Latest
+﻿Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Continue'
 
 $scriptRoot = $PSScriptRoot
@@ -23,83 +23,83 @@ try {
     Set-GitProxyForSession
 }
 catch {
-    Write-Host ('Initialization failed: ' + $_.Exception.Message)
+    Write-Host ('初始化失败：' + $_.Exception.Message)
     $scriptFailed = $true
 }
 
 if (-not $scriptFailed -and -not (Test-Path (Join-Path $repoRoot '.git'))) {
-    Write-Host ('Error: target directory is not a git repository: ' + $repoRoot)
+    Write-Host ('错误：目标目录不是 Git 仓库：' + $repoRoot)
     $scriptFailed = $true
 }
 
 if (-not $scriptFailed) {
-    $commitMessage = Read-Host 'Enter commit message'
+    $commitMessage = Read-Host '请输入提交说明'
     if ([string]::IsNullOrWhiteSpace($commitMessage)) {
-        Write-Host 'Error: commit message cannot be empty.'
+        Write-Host '错误：提交说明不能为空。'
         $scriptFailed = $true
     }
 }
 
 if (-not $scriptFailed) {
     Invoke-GitWithLocation -RepositoryPath $repoRoot -Action {
-        Write-Host ('Repository: ' + $repoRoot)
-        Write-Host ('Remote URL: ' + $config['github_repo_url'])
-        Write-Host 'Setting remote URL...'
+        Write-Host ('仓库：' + $repoRoot)
+        Write-Host ('远端地址：' + $config['github_repo_url'])
+        Write-Host '正在设置远端地址...'
         & git remote set-url origin $config['github_repo_url']
         if ($global:LASTEXITCODE -ne 0) {
-            Write-Host 'Error: failed to set remote URL.'
+            Write-Host '错误：设置远端地址失败。'
             $script:scriptFailed = $true
             return
         }
 
-        Write-Host 'Staging changes...'
+        Write-Host '正在暂存变更...'
         & git add .
         if ($global:LASTEXITCODE -ne 0) {
-            Write-Host 'Error: git add failed.'
+            Write-Host '错误：git add 执行失败。'
             $script:scriptFailed = $true
             return
         }
 
         $status = (& git status --short | Out-String).Trim()
         if (-not $status) {
-            Write-Host 'No changes to commit.'
+            Write-Host '没有可提交的变更。'
             return
         }
 
-        Write-Host 'Changes to commit:'
+        Write-Host '待提交的变更：'
         & git status --short
 
-        Write-Host ('Creating commit: ' + $commitMessage)
-        & git commit -m $commitMessage
+        Write-Host ('正在创建提交：' + $commitMessage)
+        & git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" -m $commitMessage
         if ($global:LASTEXITCODE -ne 0) {
-            Write-Host 'Error: git commit failed.'
+            Write-Host '错误：git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" 执行失败。'
             $script:scriptFailed = $true
             return
         }
 
         $branch = (& git branch --show-current | Out-String).Trim()
         if (-not $branch) {
-            Write-Host 'Error: could not determine current branch.'
+            Write-Host '错误：无法确定当前分支。'
             $script:scriptFailed = $true
             return
         }
 
-        Write-Host ('Current branch: ' + $branch)
-        Write-Host ('Starting push to origin/' + $branch + ' ...')
+        Write-Host ('当前分支：' + $branch)
+        Write-Host ('开始推送到 origin/' + $branch + ' ...')
         & git push -u origin $branch
         if ($global:LASTEXITCODE -ne 0) {
-            Write-Host ('Error: git push failed for origin/' + $branch)
+            Write-Host ('错误：推送到 origin/' + $branch + ' 失败。')
             $script:scriptFailed = $true
             return
         }
 
-        Write-Host ('Push completed successfully to origin/' + $branch)
+        Write-Host ('已成功推送到 origin/' + $branch)
     }
 }
 
 if (-not $scriptFailed) {
     Write-Host ''
-    Write-Host 'Git push workflow completed successfully.'
+    Write-Host 'Git 提交与推送流程已成功完成。'
     Wait-ForSuccessExit
     exit 0
 }
