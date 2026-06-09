@@ -273,6 +273,33 @@ function Get-SkillSummary {
     return $summaries
 }
 
+function Get-ShortSkillDescription {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Description,
+        [int]$MaxLength = 28
+    )
+
+    $text = $Description.Trim()
+    if ([string]::IsNullOrWhiteSpace($text)) {
+        return '暂无描述'
+    }
+
+    $text = $text -replace '\s+', ' '
+    $splitPattern = '\. Use when |。用于|；用于|。适用于|；适用于'
+    $parts = [regex]::Split($text, $splitPattern)
+    if ($parts.Count -gt 0 -and -not [string]::IsNullOrWhiteSpace($parts[0])) {
+        $text = $parts[0].Trim()
+    }
+
+    $text = $text.Trim('。', '；', ';', '.', ' ')
+    if ($text.Length -le $MaxLength) {
+        return $text
+    }
+
+    return ($text.Substring(0, $MaxLength).TrimEnd() + '...')
+}
+
 function Show-SkillSummary {
     param(
         [Parameter(Mandatory = $true)]
@@ -289,7 +316,7 @@ function Show-SkillSummary {
     Write-Host '技能列表：'
     foreach ($skill in $skills) {
         Write-Host ('- {0} ({1})' -f $skill.Name, $skill.Directory)
-        Write-Host ('  {0}' -f $skill.Description)
+        Write-Host ('  {0}' -f (Get-ShortSkillDescription -Description $skill.Description))
     }
 }
 
