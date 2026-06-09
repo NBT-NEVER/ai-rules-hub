@@ -78,6 +78,35 @@ This file defines long-term rules to keep Chinese text readable and stable acros
 - On Windows terminals or shells, make sure the display path supports UTF-8 before judging Chinese text as corrupted
 - If a downstream tool explicitly requires UTF-8 with BOM, record that exception clearly instead of mixing BOM and non-BOM files arbitrarily
 
+## Display And Capture Layer Rules
+
+- Distinguish three layers whenever Chinese output is involved: file bytes, runtime display, and captured or re-read logs
+- Do not treat mojibake seen only in a captured terminal transcript, tool panel, redirected log, or copied console text as proof that the live terminal display is broken
+- When one layer looks wrong, verify the other layers separately before concluding that the source file or the running program is corrupted
+- Prefer wording such as "captured output appears garbled" over "the terminal is garbled" until the live display has been checked directly
+- If the live terminal display is correct but a transcript is garbled, classify it as a capture or decode-path problem rather than a file-encoding problem
+- When validating Chinese console output, keep evidence for each layer explicit: file encoding check, console encoding check, and capture-path check
+- Treat external harness logs, IDE terminal snapshots, redirected stdout files, clipboard text, and copied command output as potentially different decode paths even when they originate from the same command
+- If a task includes PowerShell, CMD, Git Bash, Python subprocesses, or agent-run shell commands, assume the display path and the capture path may diverge on Windows until verified
+- When reporting findings to the user, state which layer each observation belongs to and avoid upgrading a capture-only symptom into a source-file diagnosis
+- If evidence is mixed, stop at the narrowest true statement first, then describe what remains unverified
+
+## PowerShell And Windows Console Verification Rules
+
+- For PowerShell Chinese output checks on Windows, verify at least these four items separately when relevant: script file encoding, explicit read/write encoding, console input or output encoding, and transcript or redirection encoding
+- Do not rely on a single terminal screenshot, a single captured transcript, or a single redirected log as the only evidence for overall Chinese-output correctness
+- When possible, confirm console behavior with direct Chinese output plus the current values of `[Console]::InputEncoding`, `[Console]::OutputEncoding`, `$OutputEncoding`, and the active code page
+- If script files are already correct and live output is correct, do not propose source-file rewrites merely because a tool-collected transcript is garbled
+- When using PowerShell to create or rewrite Chinese files, choose and document BOM versus non-BOM intentionally based on downstream compatibility instead of treating it as a universal fix
+- For automation chains, prefer explicit UTF-8 settings at file I/O boundaries and treat console rendering as a separate compatibility concern
+
+## Evidence And Reporting Rules
+
+- Report encoding findings in a layered order: first file bytes, then program read or write settings, then live display, then captured logs or copied text
+- When a mismatch appears, explain whether the problem is likely in generation, decoding, display, capture, or re-read steps instead of using the generic label "乱码问题"
+- If you personally only saw a captured transcript, say so directly and do not claim the user's local terminal is broken unless the user confirms it or direct live evidence shows it
+- If the user reports normal local display while a transcript looks garbled, treat the user's direct observation as the stronger signal for the display layer and reclassify the issue toward capture or decode-path analysis
+
 ## Copy And Paste Rules
 
 - Do not copy Chinese text from unknown legacy files, old terminals, or editors with unclear encoding directly into new UTF-8 files

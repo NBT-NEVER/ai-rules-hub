@@ -36,6 +36,8 @@
 
 - 只纳入自定义 skill，不纳入 `.system`。
 - 以后只改 `src/`，不要手改 `dist/`，也不要手改已安装到 Codex 或 Cursor 项目里的产物。
+- `.codex` 下的已安装 skill、副本规则、`AGENTS.md` 和其它受管产物都视为安装结果，不视为维护源；除读取 `.system/skill-creator` 一类系统参考外，不要把新的 skill 规则、反思总结或职责调整直接写进 `.codex`。
+- 如果发现 `.codex` 中内容与 `src/` 不一致，应回到仓库根目录下的 `src/` 修正，再通过 `build -> install` 覆盖安装产物，而不是就地修改 `.codex`。
 - 正确路径始终是：`src -> build -> dist -> install`。
 - 以后凡是反思、总结、写回经验、修改 skill、重命名 skill、增添新 skill，都必须只改 `src/`，改完后自动执行默认同步脚本，把 `src` 更新到 Codex 和默认 Cursor 项目。
 - 入口脚本必须先判断当前是哪一台电脑，再自动选择该机器对应的仓库默认路径、Cursor 项目路径和 Codex 路径。
