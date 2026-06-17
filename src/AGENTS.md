@@ -20,6 +20,7 @@
 
 - 中文内容读写、防乱码、中文抽取/转存/写回、可复制到 Word 的中文材料：`skills/chinese-encoding-guard`
 - 代码编写、改代码、工程整理、Python 项目搭建、路径管理、中文注释规范、README 与 requirements 整理：`skills/code-project-rules`
+- Git 暂存、提交、分支管理、远程 `origin` 配置、GitHub 推送/拉取、代理检查、推送超时、大文件入库、Git LFS、提交归因与项目级版本管理：`skills/git-github-remote-management`
 - 实验报告、算法说明、论文解读中的公式说明、方法说明、实现逻辑概述、课程式技术说明、结果分析、README 式中文项目介绍：`skills/lab-report-writer`
 - 学术报告、论文、摘要、结论、正式工科说明的降 AI 味、降模板化改写：`skills/academic-anti-ai-writing`
 - 基于真实项目做本科论文大纲、证据映射、章节规划、配图规划、保留/重写范围判断：`skills/academic-paper-strategist`
@@ -31,12 +32,14 @@
 ## 常见组合
 
 - 代码任务涉及中文注释、中文 README、中文输出：`skills/code-project-rules` + `skills/chinese-encoding-guard`
+- 远程推送 GitHub、`git add`、`git commit`、`git push`、修改远端地址、处理代理/超时/大文件/提交归因等项目管理任务：`skills/git-github-remote-management`
 - 实验报告、技术说明或论文公式解读需要减少 AI 味：`skills/lab-report-writer` + `skills/academic-anti-ai-writing` + `skills/chinese-encoding-guard`
 - 论文从项目证据出发先规划再成稿：先 `skills/academic-paper-strategist`，再 `skills/academic-paper-composer`；中文写回或 Word 落地时再加 `skills/chinese-encoding-guard` 与 `skills/recall-thinking`
 - 查论文、批量筛文献、优先合法下载 PDF/HTML/XML 全文、整理 DOI/PMID/Zotero/BibTeX：`skills/literature-downloader`
 - Word/docx 或高价值文件修改同时含中文内容：`skills/chinese-encoding-guard` + `skills/recall-thinking`
 - 安装或修改任意 skill 后，需要同步检查 `C:/Users/18030/.codex/AGENTS.md` 是否补充、删减或改写入口路由：`skills/skill-maintainer`
-- 涉及 skill 的更新、下载、部署、GitHub 同步、本地安装或 Cursor 项目级安装时，优先使用：`skills/skill-maintainer`
+- 涉及 skill 的更新、下载、部署、本地安装或 Cursor 项目级安装时，优先使用：`skills/skill-maintainer`
+- 涉及 skill 体系改完后的 `git add`、`git commit`、GitHub 同步、远端推送和推送失败排查时，优先组合使用：`skills/skill-maintainer` + `skills/git-github-remote-management`
 - 涉及反思总结写回 skill、沉淀新经验、增添新 skill，或需要把 `src` 自动同步到 Codex 和 Cursor 项目时，优先使用：`skills/skill-maintainer`
 - 新增 skill、重构 skill 结构或明显修改 skill 元信息时，优先使用：`skills/skill-maintainer`，并同时参考 `C:/Users/18030/.codex/skills/.system/skill-creator`
 - 如果当前对话中的明确要求与 skill 规则冲突，以当前对话要求为准；如果仓库本地约束比 skill 更具体，优先遵守本地约束，再补充 skill 规则。

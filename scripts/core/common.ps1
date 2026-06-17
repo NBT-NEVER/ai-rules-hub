@@ -322,12 +322,22 @@ function Show-SkillSummary {
 
 function Wait-ForSuccessExit {
     Write-Host ''
-    Write-Host '操作完成。按任意键关闭窗口。'
-    $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+    if ($Host.Name -eq 'ConsoleHost' -and -not [Console]::IsInputRedirected) {
+        Write-Host '操作完成。按任意键关闭窗口。'
+        $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+    }
+    else {
+        Write-Host '操作完成。'
+    }
 }
 
 function Wait-ForFailureExit {
     Write-Host ''
-    Write-Host '操作失败。错误信息已保留在窗口中，按任意键关闭窗口。'
-    $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+    if ($Host.Name -eq 'ConsoleHost' -and -not [Console]::IsInputRedirected) {
+        Write-Host '操作失败。错误信息已保留在窗口中，按任意键关闭窗口。'
+        $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+    }
+    else {
+        Write-Host '操作失败。'
+    }
 }

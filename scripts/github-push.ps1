@@ -70,9 +70,9 @@ if (-not $scriptFailed) {
         & git status --short
 
         Write-Host ('正在创建提交：' + $commitMessage)
-        & git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" -m $commitMessage
+        & git commit -m $commitMessage
         if ($global:LASTEXITCODE -ne 0) {
-            Write-Host '错误：git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" 执行失败。'
+            Write-Host '错误：git commit 执行失败。'
             $script:scriptFailed = $true
             return
         }

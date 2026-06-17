@@ -58,6 +58,8 @@
   负责中文读写、防乱码、UTF-8 约束、中文中间文件链路与临时目录管理。
 - `code-project-rules`
   负责 Python 项目结构、路径管理、中文注释、README、requirements 和工程交付规范。
+- `git-github-remote-management`
+  负责 Git 暂存、提交、分支、远端仓库、GitHub 推送/拉取、代理检查、超时处理、大文件推送策略、Git LFS 取舍，以及 Cursor attribution 清理与禁用规则。
 - `lab-report-writer`
   负责实验报告、算法说明、论文解读中的公式说明、README 式项目介绍、方法说明、实现逻辑概述、结果分析以及 MathType 可复用 LaTeX 配套输出等中文说明性技术写作。
 - `literature-downloader`
@@ -203,12 +205,13 @@
 
 1. 完成本地修改与必要验证。
 2. 运行 `scripts/github-push.ps1 -CommitMessage "update skill xxx"`。
-3. `github-push.ps1` 必须自动完成：
+3. 进入 Git 暂存、提交、推送、代理排查、超时排查、大文件判定或提交归因清理阶段时，同时参考 `git-github-remote-management`。
+4. `github-push.ps1` 必须自动完成：
    - `scripts/update-from-src.ps1`
    - `git add .`
    - `git commit`
    - `git push`
-4. 如果工作区没有可提交的变化，脚本应停止提交并明确提示。
+5. 如果工作区没有可提交的变化，脚本应停止提交并明确提示。
 
 ### 3. 另一台机器拉取并部署
 
@@ -263,6 +266,7 @@
 
 - 发布脚本：`scripts/github-push.ps1`
 - 用途：在本机完成默认同步后，把当前仓库暂存、提交并推送到 GitHub。
+- 若任务重点进入 Git 版本管理、远端推送、代理排查、超时排查、大文件策略或 Cursor attribution 处理，同时参考 `git-github-remote-management`。
 - 默认顺序：
   - `update-from-src.ps1`
   - `git add .`

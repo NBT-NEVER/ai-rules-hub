@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "GIT管理与GITHUB远程仓库管理"
+  short_description: "处理 git 暂存、提交、推送、远程仓库与失败排查。"
+  default_prompt: "Use $git-github-remote-management to stage, commit, push, and troubleshoot Git/GitHub remote repository work, including proxy, timeout, large-file, and Cursor attribution checks."
