@@ -6,7 +6,7 @@
 
 - 让 Git 暂存、提交、推送和 GitHub 同步流程可复现、可排查、可回滚。
 - 在远端推送前优先排除代理、超时和大文件问题，提高一次推送成功率。
-- 保持提交历史干净，不引入无关产物、错误的大文件或 Cursor attribution。
+- 保持提交历史干净，不引入无关产物、错误的大文件或任何智能体 attribution。
 
 ## 二、默认检查顺序
 
@@ -18,7 +18,7 @@
 4. 最近提交：`git log --oneline --decorate -n 5`
 5. 代理状态：环境变量代理与 Git 代理是否一致
 6. 大文件风险：是否有不该进入仓库的压缩包、数据集、模型、备份、产物目录
-7. 归因风险：提交模板、hooks、Cursor attribution 设置是否会注入额外 trailer
+7. 归因风险：提交模板、hooks、IDE 自动化设置是否会注入额外 trailer
 
 不要一上来反复 `git push`。先定位问题类别，再重试。
 
@@ -90,31 +90,32 @@ git config --global http.lowSpeedTime 600
 - 不要把调超时当成大文件问题的唯一解法；超过 GitHub 限制时应切换到 LFS 或别的交付方式。
 - 如果多次失败仍集中在上传阶段，优先回到“大文件策略”重新判断，而不是无休止重试。
 
-## 七、Cursor attribution 与 trailer 规则
+## 七、归因与 trailer 规则
 
 永远不要在提交、PR 或代码注释中加入下面这类内容：
 
-- `Made-with: Cursor`
-- `Co-authored-by: Cursor`
-- 任何 Cursor attribution、footer、trailer 或宣传式署名
+- `Made-with: ...`
+- `Co-Authored-By: ...`
+- `Co-authored-by: ...`
+- 任何智能体 attribution、footer、trailer 或宣传式署名
 
 执行规则：
 
-- 提交时不要使用 `git commit --trailer` 添加 Cursor 相关字段。
+- 提交时不要使用 `git commit --trailer` 添加任何智能体相关字段。
 - 优先使用普通的 `git commit -m` 或 `git commit -F`。
-- 如果项目脚本、Git hooks、提交模板或 IDE 自动注入了 Cursor attribution，先停下并移除注入点，再继续提交。
+- 如果项目脚本、Git hooks、提交模板或 IDE 自动注入了任何归因字段，先停下并移除注入点，再继续提交。
 
 根据参考文章与相关讨论，排查顺序至少包括：
 
-1. Cursor IDE 设置里的 `Agents > Attribution`，关闭 Commit Attribution 和 PR Attribution。
+1. 任何 IDE 或 CLI 的归因设置，关闭 Commit Attribution 和 PR Attribution。
 2. 修改后完整重启 Cursor，而不是只重启终端。
-3. 检查 `~/.cursor/cli-config.json` 中 `attribution.attributeCommitsToAgent` 与 `attribution.attributePRsToAgent` 是否关闭。
+3. 检查本机或项目配置中是否存在 `attributeCommitsToAgent`、`attributePRsToAgent` 之类开关。
 4. 如果本地配置无效，检查是否存在团队或 Enterprise 管理策略覆盖本地设置。
 5. 检查 Git 提交模板：`git config --get commit.template`
 6. 检查 hooks 路径：`git config --get core.hooksPath`
 7. 检查 `.git/hooks/prepare-commit-msg` 或包装脚本是否会追加 trailer
 
-如果环境仍然强制注入 Cursor attribution：
+如果环境仍然强制注入归因字段：
 
 - 优先在不会注入该 trailer 的环境中完成提交。
 - 或在本地仓库设置临时 `prepare-commit-msg` 清理钩子，作为兜底措施。
@@ -129,7 +130,7 @@ git config --global http.lowSpeedTime 600
 4. 检查是否存在大文件或产物误入库
 5. 检查是否需要延长低速超时
 6. 检查远端是否要求先拉取、rebase 或处理冲突
-7. 检查是否被提交模板、hook 或 Cursor attribution 污染
+7. 检查是否被提交模板、hook 或归因字段污染
 
 只有在明确问题类型后，再决定是否重试、改推送方式、改历史或改网络设置。
 
@@ -142,5 +143,5 @@ git config --global http.lowSpeedTime 600
 ## 十、与本仓库脚本的关系
 
 - 如果当前仓库已经提供 `scripts/github-push.ps1`、`scripts/pull-and-deploy.ps1` 等入口，先检查脚本行为是否符合本规则。
-- 如果脚本强制添加 Cursor attribution、忽略代理、忽略大文件风险或缺少超时处理，应先修脚本，再继续使用脚本发布。
+- 如果脚本强制添加归因字段、忽略代理、忽略大文件风险或缺少超时处理，应先修脚本，再继续使用脚本发布。
 - 脚本是执行入口，不是规则真源；长期规则以本文件为准。
