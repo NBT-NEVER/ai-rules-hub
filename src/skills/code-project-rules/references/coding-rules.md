@@ -100,6 +100,14 @@ Use these only when the task actually includes machine learning.
 - Explain the internal execution logic clearly enough that the user can understand how the project works.
 - When the project contains an algorithm, describe it in experiment-report style and tie it back to the code.
 - Document every output artifact, including figure names, axis meanings, table field meanings, and units when applicable.
+- 在与代码位于同一文件夹的 `README.md` 中，如果代码原理部分涉及公式，统一使用 GitHub 可直接渲染的 LaTeX 格式。
+- 行内公式使用 `$...$`，独立成行的公式使用 `$$...$$`。
+- `README.md` 中不要使用实验报告正文那种“先写渲染公式、下一行再重复 LaTeX 源码”的双行格式。
+- 公式写完后仍要写 `其中：`，并逐项解释公式中的变量。
+- `README.md` 中的变量解释统一使用 LaTeX 形式，例如 `$k_1$：变量解释。`
+- 如果一组连续公式共同描述同一算法流程、同一数值方法或同一推导步骤，可以连续展示整组公式，再在后面统一写一次 `其中：`。
+- 变量解释必须覆盖当前公式或当前公式组中的全部关键符号，不得只解释一部分。
+- `README.md` 中的公式目标是便于 GitHub 页面直接渲染、直接阅读和直接维护，因此优先使用标准 Markdown 加 LaTeX 写法。
 
 ## requirements.txt Rules
 

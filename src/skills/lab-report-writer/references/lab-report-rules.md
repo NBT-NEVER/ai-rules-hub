@@ -33,45 +33,65 @@ When the user requests a full experiment report, write it in this order:
 
 When the user requests only one section, a short explanation, a README fragment, or an algorithm summary, reuse the same style constraints but adapt the structure to the target document instead of forcing full report headings.
 
-## Formula Explanation Rules
-
-When the user requests paper interpretation, formula explanation, variable explanation, or MathType-ready output, use this structure:
-
-1. Show the formula first in rendered display form.
-2. Explain the meaning of the whole formula in one short paragraph or one short sentence.
-3. Then use the exact label `其中：` and explain important variables or symbols one line at a time.
-4. In the readable section, use rendered symbols or plain readable forms such as `π*`、`ρ`、`s0`、`s_ob`. Do not show raw LaTeX source such as `\pi^*`、`\rho`、`s_{ob}` inside the prose or variable explanation unless the user explicitly asks for inline source.
-   If a symbol has a direct rendered form, prefer that rendered form in the readable section, for example `λ` instead of `\lambda`.
-5. After the readable section ends, add a separate `LaTeX 代码` section. Do not mix code lines into the readable section.
-6. The LaTeX section must follow the same order as the readable section: first one line for the full formula, then one line for each explained variable or symbol.
-7. The number of LaTeX lines should match the formula line plus the number of explained variable lines, so the user can map them one by one.
-8. Each LaTeX line should contain only the formula or variable source itself so it can be pasted directly into MathType.
-9. If the user gives a stricter format in the current thread, follow the current thread.
-
-Recommended readable layout:
-
-- 公式展示
-- 公式含义
-- 其中：
-- `π*：最优策略`
-- `λ：拉格朗日乘子`
-- `s0：初始状态`
-- `δ：风险容忍阈值`
-
-Recommended LaTeX layout:
-
-- full formula line
-- `\lambda`
-- `\pi^*`
-- `s_0`
-- `\delta`
-
 ## Code-Related Rules
 
 - Explain the physical or mathematical meaning of all important variables.
 - Explain the logical relationship between code modules.
 - Do not translate code line by line.
 - Summarize function and mechanism instead.
+
+## Formula Rules
+
+### Report And Analysis Documents
+
+- 本部分适用于实验报告正文、根据代码撰写的原理总结文档、分析说明文档和方法说明文档。
+- 本部分不适用于与代码位于同一文件夹的 `README.md`；README 中的公式规则交给 `code-project-rules`。
+- 写入文档的每个公式块都按固定顺序书写，不得只写渲染公式，也不得只写 LaTeX 代码。
+- 固定格式如下：
+
+```text
+[已渲染的公式]
+$对应的 LaTeX 代码$
+
+其中：
+$变量1$：变量 1 解释。
+$变量2$：变量 2 解释。
+```
+
+- 第 1 行必须是已经渲染完成的公式。
+- 第 2 行必须是与上一行完全对应的 LaTeX 代码，前后必须用 `$` 包住。
+- 第 3 行保留为空行。
+- 第 4 行固定写 `其中：`。
+- 后续各行必须逐项解释公式中出现的所有变量，不得遗漏。
+- 变量解释统一写成 `$变量LaTeX$：变量解释。`
+- 如果同一行包含多个等式，仍按一个公式块处理，变量解释必须覆盖该行中出现的全部变量。
+- 如果一组连续公式属于同一推导过程或同一算法步骤，可以连续给出，再在该组后统一写 `其中：` 和变量解释；但新出现的变量仍必须全部解释。
+- 只要下标、上标或附加记号本身带有独立含义，也应在解释中写清楚。
+
+### Formulas Shown In Dialogue
+
+- 本部分适用于在对话中介绍、说明或解释公式，而不是写入正式文档的场景。
+- 对话中的公式必须连续给出两个版本，先给渲染版，再给 LaTeX 版，中间不要插入无关说明。
+- 第一版为完全渲染版，固定顺序如下：
+
+```text
+[已渲染的公式]
+其中：
+[用已渲染数学符号逐项解释变量]
+```
+
+- 第一版的公式必须完全渲染，不得出现裸露的 LaTeX 源码。
+- 第一版解释变量时，必须直接使用已经渲染的数学字符，例如 `γ`，不要写成 `\gamma`。
+- 第二版必须紧跟在第一版之后，结构与第一版完全一致，固定顺序如下：
+
+```text
+$LaTeX 公式$
+其中：
+$变量LaTeX$：变量解释。
+```
+
+- 第二版中的公式和变量符号都统一使用 `$...$` 包裹的 LaTeX 代码形式。
+- 如果公式中的下标、上标或缩写带有独立含义，解释时既要说明整体物理意义，也要说明附加记号的含义。
 
 ## Anti-AI Writing Rules
 
@@ -106,6 +126,10 @@ Prefer:
 - Use a mix of short and medium-length sentences.
 - Avoid repeating the same sentence pattern continuously.
 - Avoid excessive connectors.
+- 实验报告正文只写判据、事实和分类结果。
+- 不要把现象解释、意义判断和结论压缩到同一句中。
+- 不要用带引号的口语化评述代替正式分析。
+- 如果需要解释现象或说明意义，应另起句展开，并写清对象、条件和依据。
 
 ## Output Rules
 

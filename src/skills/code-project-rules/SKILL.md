@@ -1,6 +1,6 @@
 ---
 name: code-project-rules
-description: Follow the user's coding structure, Python project layout, path management rules, Chinese comment standards, README and requirements conventions, and versioned output conventions. Use when creating, modifying, organizing, documenting, or reviewing code projects under the user's personal engineering rules, especially when the task involves project documentation, module explanations, or README content tied to the codebase.
+description: Follow the user's coding structure, Python project layout, path management rules, Chinese comment standards, README and requirements conventions, and versioned output conventions. Use when creating, modifying, organizing, documenting, or reviewing code projects under the user's personal engineering rules, especially when the task involves project documentation, module explanations, README content tied to the codebase, or GitHub-renderable LaTeX formulas and variable explanations in a same-folder README.
 ---
 
 # Code Project Rules
@@ -14,7 +14,7 @@ Read `references/coding-rules.md` before changing project files when this skill 
 3. Keep the project minimal but complete. Add only the files needed for a runnable and maintainable result.
 4. Centralize path and output naming in `config.py` whenever the project uses Python entry scripts.
 5. Keep code, README, requirements, and generated output descriptions consistent with each other.
-6. When the task includes explanatory project writing, such as README sections or module introductions, apply these project rules together with the relevant writing-style skill.
+6. When the task includes explanatory project writing, such as README sections, module introductions, or code-principle formulas in a same-folder README, apply these project rules together with the relevant writing-style skill.
 
 ## Priority Rule
 
