@@ -62,6 +62,9 @@
   负责 Git 暂存、提交、分支、远端仓库、GitHub 推送/拉取、代理检查、超时处理、大文件推送策略、Git LFS 取舍，以及 Cursor attribution 清理与禁用规则。
 - `lab-report-writer`
   负责实验报告、算法说明、论文解读中的公式说明、实验报告正文公式排版、对话中公式的渲染版与 LaTeX 双版本展示、README 式项目介绍、方法说明、实现逻辑概述、结果分析以及 MathType 可复用 LaTeX 配套输出等中文说明性技术写作。
+- `latex-coding-report-requirements`
+  也适合把学校模板抽取为可复用的通用 LaTeX 规则文档，并把这类长期规则沉淀到对应 `references/`。
+  负责使用 LaTeX 编码撰写实验报告、课程论文、学术论文等场景下的模板约束；重点保证严格按照用户给定模板、现有 `.tex` 文件、学校格式或固定框架生成和修改 LaTeX 代码，而不是擅自改成通用结构。
 - `literature-downloader`
   负责中文文献检索、论文筛选、合法全文获取、批量采集、DOI/PMID 查询、影响因子/分区核验、下载日志整理，以及 Zotero/BibTeX 相关整理；明确禁止绕过付费墙或盗版下载。
 - `recall-thinking`
