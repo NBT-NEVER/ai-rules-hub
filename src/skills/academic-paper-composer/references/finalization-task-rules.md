@@ -2,6 +2,8 @@
 
 Use this reference when turning an existing draft into a submission-ready `.docx`.
 
+This reference is DOCX-only. For `.tex` templates, use `latex-coding-report-requirements` and validate by LaTeX source plus compiled PDF instead of Word formatting checks.
+
 ## Mandatory Sequence
 
 1. Copy the original draft.

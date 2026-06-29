@@ -10,6 +10,15 @@ Quality evaluation occurs at two levels:
 
 ---
 
+## Terminology And Abbreviation Rules
+
+- Define every technical term, model, framework, and algorithm at first use.
+- In Chinese text, write the first occurrence as `中文全称（English full name, ABBR）` or `中文全称（英文全称，英文缩写）`.
+- In English text, write the first occurrence as `English full name (ABBR)`.
+- Match singular and plural forms to the referent. Use `automated ground vehicle (AGV)` for one vehicle and `automated ground vehicles (AGVs)` for multiple vehicles.
+- Keep one fixed full name, capitalization, hyphenation, and abbreviation mapping throughout the paper.
+- Apply the first-use rule separately in the Chinese abstract, English abstract, main body, figure captions, table captions, and notes.
+
 ## Chapter-Level Quality Standards
 
 ### 5-Dimension Assessment (4 points each, 20 total)

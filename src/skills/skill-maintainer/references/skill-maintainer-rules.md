@@ -51,11 +51,11 @@
 - `academic-anti-ai-writing`
   负责学术报告、论文、实验报告、正式工科说明等中文正式文本的降模板化、降 AI 味、增强证据边界与工程细节表达。
 - `academic-paper-composer`
-  负责基于真实项目和既有草稿完成本科软件/计算机类论文正文重写、定稿整理、截图替换和最终交付。
+  负责基于真实项目和既有草稿完成本科软件/计算机类论文正文重写、Word/DOCX 定稿整理、截图替换、图表恢复和改稿说明；如果最终目标是 LaTeX 模板，应把 `.tex` 结构和编译验证交给 `latex-coding-report-requirements`。
 - `academic-paper-strategist`
-  负责基于真实项目证据规划本科软件/计算机类论文的大纲、证据映射、章节重写范围和配图方案。
+  负责基于真实项目证据规划本科软件/计算机类论文的大纲、证据映射、章节重写范围、配图方案和最终格式路径，需区分 Word/DOCX 定稿流与 LaTeX 模板定稿流。
 - `chinese-encoding-guard`
-  负责中文读写、防乱码、UTF-8 约束、中文中间文件链路与临时目录管理。
+  负责中文读写、防乱码、UTF-8 约束、中文中间文件链路与临时目录管理，覆盖 Word/DOCX、Markdown、纯文本和 LaTeX 源文件。
 - `code-project-rules`
   负责 Python 项目结构、路径管理、中文注释、README、requirements、工程交付规范，以及同目录 README 中代码原理公式、LaTeX 变量说明和 GitHub 可渲染公式规则。
 - `git-github-remote-management`
@@ -64,11 +64,11 @@
   负责实验报告、算法说明、论文解读中的公式说明、实验报告正文公式排版、对话中公式的渲染版与 LaTeX 双版本展示、README 式项目介绍、方法说明、实现逻辑概述、结果分析以及 MathType 可复用 LaTeX 配套输出等中文说明性技术写作。
 - `latex-coding-report-requirements`
   也适合把学校模板抽取为可复用的通用 LaTeX 规则文档，并把这类长期规则沉淀到对应 `references/`。
-  负责使用 LaTeX 编码撰写实验报告、课程论文、学术论文等场景下的模板约束；重点保证严格按照用户给定模板、现有 `.tex` 文件、学校格式或固定框架生成和修改 LaTeX 代码，而不是擅自改成通用结构。
+  负责使用 LaTeX 编码撰写实验报告、课程论文、学术论文等场景下的模板约束；重点保证严格按照用户给定模板、现有 `.tex` 文件、学校格式或固定框架生成、修改和验证 LaTeX 代码，而不是擅自改成通用结构；同时明确 Word/DOCX 工作流不套用到 LaTeX 源文件。
 - `literature-downloader`
   负责中文文献检索、论文筛选、合法全文获取、批量采集、DOI/PMID 查询、影响因子/分区核验、下载日志整理，以及 Zotero/BibTeX 相关整理；明确禁止绕过付费墙或盗版下载。
 - `recall-thinking`
-  负责复用长期经验、踩坑记录、核验方法和稳定操作链路。
+  负责复用长期经验、踩坑记录、核验方法和稳定操作链路，包括 Word/DOCX、LaTeX 源文件、中文写回、PowerShell 链路和高价值文件修改。
 - `skill-maintainer`
   负责维护整套 skill 体系本身，包括命名、分层、GitHub 仓库、构建脚本、安装脚本、同步部署流程、新 skill 的正确源目录落点，以及把新经验回写到 `recall-thinking`；在新增或大改 skill 时要联动参考系统 `skill-creator`。
 

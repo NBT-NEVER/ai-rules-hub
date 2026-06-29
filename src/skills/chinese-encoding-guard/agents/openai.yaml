@@ -1,4 +1,4 @@
 interface:
   display_name: "Chinese Encoding Guard"
-  short_description: "Prevent Chinese mojibake and keep temp read/write files orderly."
-  default_prompt: "Use $chinese-encoding-guard to keep Chinese text readable and stable in documents, Markdown, plain text, code, and temporary files created while reading Chinese materials."
+  short_description: "Prevent Chinese mojibake in Word, LaTeX, and temp files."
+  default_prompt: "Use $chinese-encoding-guard to keep Chinese text readable and stable in Word/DOCX, LaTeX, Markdown, code, and temporary file workflows."

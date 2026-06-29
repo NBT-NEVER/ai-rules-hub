@@ -6,6 +6,8 @@ Load this reference when the user is **not** asking for a simple blank-slate fin
 - keep or restore original figures, E-R diagrams, or database table-description blocks
 - add real system-running screenshots into the thesis
 
+This playbook is DOCX-only. Do not use DOCX body-anchor, Word TOC, or `python-docx` rules for `.tex` source files.
+
 ## 1. Pick The True Working File
 
 Before editing, determine which file is the live manuscript now:

@@ -2,6 +2,8 @@
 
 Use this reference when the task is to turn an existing draft into a submission-ready undergraduate thesis DOCX.
 
+This reference is DOCX-only. For `.tex` templates, keep planning format-neutral here and hand off template preservation, source edits, and compile validation to `latex-coding-report-requirements`.
+
 ## Mandatory Execution Order
 
 1. Copy the draft first.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Recall Thinking"
-  short_description: "随时读取并复用长期经验、坑点与核验方法。"
-  default_prompt: "Use $recall-thinking to reuse prior local lessons, safe paths, and verification methods before handling risky or error-prone tasks."
+  short_description: "复用 Word、LaTeX、中文写回与高价值文件经验。"
+  default_prompt: "Use $recall-thinking to reuse prior local lessons, safe paths, and verification methods before editing Word/DOCX, LaTeX sources, Chinese text, or other high-value files."

@@ -9,6 +9,8 @@ Use it as an execution-order guardrail for tasks such as:
 - add real runtime screenshots
 - perform another anti-similarity or anti-AIGC round on a newer report
 
+This checklist is for live DOCX working drafts. For a LaTeX working draft, use `latex-coding-report-requirements` and verify the `.tex` source plus compiled PDF.
+
 ## 1. Lock The Working Files
 
 Before editing, record all three roles explicitly:

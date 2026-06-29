@@ -29,6 +29,7 @@ Do not invent:
 ## Conservative Writing Rules
 
 - Downgrade unsupported "innovation" into engineering highlights.
+- Do not write meta statements that expose a source draft or upstream paper, such as "original paper", "this paper corresponds to the original paper", "translated from", or "adapted from". The final thesis must read as an independent account of the current project; provenance belongs in citations, not in narrative explanation.
 - Do not claim production validation without evidence.
 - If testing is manual, say so plainly.
 - If no stress test exists, omit benchmark-style claims.

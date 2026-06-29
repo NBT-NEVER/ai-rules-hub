@@ -1,4 +1,4 @@
 interface:
   display_name: "LaTeX Coding Report Requirements"
-  short_description: "Generate LaTeX report code under strict template constraints."
-  default_prompt: "Use $latex-coding-report-requirements to generate or revise LaTeX code for an experiment report or academic paper by following the provided template exactly."
+  short_description: "按 LaTeX 模板生成、修改并验证报告论文"
+  default_prompt: "Use $latex-coding-report-requirements to fill or revise my LaTeX report or thesis template, preserve its structure, and compile-check it when possible."

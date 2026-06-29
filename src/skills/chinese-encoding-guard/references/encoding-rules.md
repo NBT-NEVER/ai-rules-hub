@@ -1,6 +1,6 @@
 # Chinese Encoding Rules
 
-This file defines long-term rules to keep Chinese text readable and stable across code, generated reports, plain text files, Markdown files, and content that may later be pasted into Word.
+This file defines long-term rules to keep Chinese text readable and stable across code, generated reports, plain text files, Markdown files, LaTeX source files, and content that may later be pasted into Word.
 
 ## Core Goal
 
@@ -30,18 +30,19 @@ This file defines long-term rules to keep Chinese text readable and stable acros
 - Do not output escaped pseudo-Chinese or broken replacement characters
 - Do not mix multiple encodings within the same file
 
-## Word-Oriented Text Rules
+## Word And LaTeX Text Rules
 
-- When generating Chinese content intended for Word, output normal Unicode Chinese text directly
-- Prefer plain text or Markdown that can be copied into Word without transcoding
+- When generating Chinese content intended for Word or LaTeX source, output normal Unicode Chinese text directly
+- Prefer plain text, Markdown, or `.tex` source that can be copied or written without transcoding
 - Do not insert unnecessary control characters, invisible junk symbols, or malformed punctuation
-- If the user asks for `.docx` generation in the future, keep the textual content itself in normal Unicode and ensure any generation path preserves UTF-8 or native Unicode handling
+- If the user asks for `.docx` generation, keep the textual content itself in normal Unicode and ensure any generation path preserves UTF-8 or native Unicode handling
+- If the user asks for `.tex` generation, keep Chinese text in UTF-8, preserve the template engine path, and avoid shell paths that may corrupt Chinese characters before they reach the source file
 
 ## Temporary Workspace Rules For File Reading
 
-- When reading `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, or similar files and temporary extraction or conversion artifacts are needed, place them under `C:/Users/18030/Desktop/GPT-files`
+- When reading `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.txt`, `.tex`, `.bib`, `.cls`, `.sty`, or similar files and temporary extraction or conversion artifacts are needed, place them under `C:/Users/18030/Desktop/GPT-files`
 - Do not place such temporary files inside the current project folder, repository folder, or the original data folder that contains the source files
-- Create clear category folders under `C:/Users/18030/Desktop/GPT-files`, for example `pdf`, `word`, `ppt`, `txt`, `images`, `converted`, or `extracted`, and keep each task inside the matching category path
+- Create clear category folders under `C:/Users/18030/Desktop/GPT-files`, for example `pdf`, `word`, `latex`, `ppt`, `txt`, `images`, `converted`, or `extracted`, and keep each task inside the matching category path
 - Keep the temporary workspace orderly; do not mix unrelated tasks into one flat folder or scatter one task across many arbitrary directories
 - After the file has been read successfully and the temporary artifacts are no longer needed, delete them promptly
 - After the whole project is complete, clean up leftover temporary folders created for that project

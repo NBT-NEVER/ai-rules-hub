@@ -1,6 +1,6 @@
 ---
 name: academic-paper-composer
-description: Use when the user needs to turn a real software engineering / computer science project and an existing thesis draft into a submission-ready undergraduate thesis manuscript. Trigger for requests such as "根据项目把论文改成定稿", "按学校模板排版成最终版", "复制初稿后生成定稿 Word", "为定稿降查重", "根据PaperPass报告降AIGC", "继续在手改初稿上改", "恢复原来的图表和数据库说明", or when academic-paper-strategist has already produced an evidence-backed rewrite plan. Outputs a cleaned manuscript, final DOCX workflow, and a separate rework report.
+description: Use when the user needs to turn a real software engineering / computer science project and an existing thesis draft into a submission-ready undergraduate thesis manuscript, especially in a Word/DOCX workflow. Trigger for requests such as "根据项目把论文改成定稿", "按学校模板排版成最终版", "复制初稿后生成定稿 Word", "为定稿降查重", "根据PaperPass报告降AIGC", "继续在手改初稿上改", "恢复原来的图表和数据库说明", or when academic-paper-strategist has already produced an evidence-backed rewrite plan. Outputs a cleaned manuscript, final DOCX workflow when the target is Word, and a separate rework report; use latex-coding-report-requirements for `.tex` template finalization.
 ---
 
 # Academic Paper Composer
@@ -16,7 +16,13 @@ This is the writing and finalization skill for Codex-based undergraduate softwar
 4. `playwright` - capture real runtime screenshots when the thesis needs running-system evidence
 5. `doc` - apply Word formatting and visually verify the final DOCX
 
-This skill is responsible for the thesis content and final assembly logic. It must not claim completion until the copied or user-designated working DOCX has been formatted and checked.
+This skill is responsible for the thesis content and final assembly logic in the Word/DOCX flow. It must not claim completion until the copied or user-designated working DOCX has been formatted and checked.
+
+## Format Boundary
+
+- Use this skill for Word/DOCX thesis finalization, copied draft repair, figure/table restoration, partial section replacement, running screenshot insertion, and final Word formatting.
+- If the user wants a LaTeX template workflow or a `.tex`-based thesis/report, use `latex-coding-report-requirements` for source formatting, template preservation, and compile validation.
+- This skill may still help write or rewrite thesis prose for a LaTeX target, but it must not apply DOCX-specific file operations, TOC anchor rules, or Word formatting checks to `.tex` files.
 
 ## Required Inputs
 
@@ -39,6 +45,7 @@ This skill is responsible for the thesis content and final assembly logic. It mu
 - Load `references/detection-report-rewrite-playbook.md` whenever the user asks to lower similarity or AIGC risk and provides reports.
 - Load `references/docx-draft-salvage-and-runtime-screenshot-playbook.md` whenever the task involves continuing from a hand-edited draft, partial section replacement, restoring original tables/figures, or adding real running-system screenshots.
 - Load `references/thesis-revision-operation-checklist.md` whenever the task involves editing a live working draft, because the edit order matters.
+- For LaTeX manuscripts, do not replace DOCX-specific file handling with ad hoc LaTeX source editing. Use `latex-coding-report-requirements` for the source-level template work and keep this skill on content-only support if needed.
 - Rewrite unsupported text instead of polishing false content.
 - When lowering similarity or AIGC risk, rewrite the wording while preserving project truth; never game the score by inventing facts or deleting essential substance.
 - Keep all visible manuscript text black.

@@ -1,6 +1,6 @@
 ---
 name: academic-paper-strategist
-description: Use when the user needs to plan, de-risk, or ground a software engineering / computer science undergraduate thesis from a real codebase before final writing. Trigger for requests such as "根据项目写毕业论文", "先做论文大纲", "用真实项目材料规划论文", "检查论文是否脱离代码", "根据检测报告降查重", "根据AIGC报告改写定稿", "继续在手改初稿上改", or when an existing draft thesis must be reworked against a school format sample. Produces an evidence-backed outline, chapter rewrite plan, figure plan, and handoff package for academic-paper-composer.
+description: Use when the user needs to plan, de-risk, or ground a software engineering / computer science undergraduate thesis from a real codebase before final writing. Trigger for requests such as "根据项目写毕业论文", "先做论文大纲", "用真实项目材料规划论文", "检查论文是否脱离代码", "根据检测报告降查重", "根据AIGC报告改写定稿", "继续在手改初稿上改", or when an existing draft thesis must be reworked against a school or LaTeX format sample. Produces an evidence-backed outline, chapter rewrite plan, figure plan, and handoff package for academic-paper-composer or the LaTeX template workflow.
 ---
 
 # Academic Paper Strategist
@@ -14,7 +14,8 @@ This is the planning skill for Codex-based software engineering theses. Use it b
 2. `academic-paper-composer` - content rewrite and final manuscript assembly
 3. `drawio` - redraw engineering-style thesis figures when required
 4. `playwright` - capture real runtime screenshots when the thesis needs running-system evidence
-5. `doc` - produce and visually check the final DOCX
+5. `doc` - produce and visually check the final DOCX when the target is Word
+6. `latex-coding-report-requirements` - preserve and validate the `.tex` template when the target is LaTeX
 
 Do not skip the strategist step when the user asks for a submission-ready undergraduate thesis from an existing project and draft.
 
@@ -28,6 +29,7 @@ Do not skip the strategist step when the user asks for a submission-ready underg
 - If the task is to produce a final thesis from an existing draft, also load:
   - `references/project-grounding-rules.md`
   - `references/finalization-task-rules.md`
+- If the final deliverable is LaTeX rather than Word/DOCX, keep the evidence mapping and outline format-neutral, and hand off `.tex` structure work to `latex-coding-report-requirements`.
 - Load `references/draft-salvage-handoff-playbook.md` when the user wants to continue a partially edited draft, keep original figures/tables, or add running-system screenshots.
 - Never invent features, APIs, data tables, performance numbers, deployment scale, user scale, concurrency benchmarks, or test results.
 - Reframe "innovation" conservatively as engineering highlights, implementation choices, integration value, or maintainability benefits.
@@ -37,8 +39,8 @@ Do not skip the strategist step when the user asks for a submission-ready underg
 ## Inputs To Gather
 
 - Repository root
-- Existing draft thesis (`.docx`, `.md`, or both)
-- School template or format sample (`.doc`, `.docx`, or `.pdf`)
+- Existing draft thesis (`.docx`, `.md`, `.tex`, or a LaTeX project folder)
+- School template or format sample (`.doc`, `.docx`, `.tex`, LaTeX project, or `.pdf`)
 - Core evidence files such as:
   - build file (`pom.xml`, `package.json`, etc.)
   - architecture docs
@@ -138,6 +140,8 @@ Output a handoff package for the composer containing:
 
 When the handoff will drive a live DOCX revision, make it explicit enough that the composer can execute without re-deciding replacement boundaries, preserve lists, or screenshot targets.
 
+When the handoff will drive a LaTeX revision, make it explicit enough that `latex-coding-report-requirements` can preserve the template class, macros, file split, citation path, figure/table rules, and build engine.
+
 The outline should normally include:
 - cover / declarations / abstracts / TOC
 - chapter 1 introduction
@@ -149,6 +153,8 @@ The outline should normally include:
 - references
 - acknowledgements
 - appendices if needed
+
+For a LaTeX target, keep the same chapter logic but preserve the template's own front matter, command names, file split, and class-specific structure rather than forcing Word-style page flow.
 
 ### Step 6: Produce A Figure And Screenshot Plan
 
@@ -205,6 +211,7 @@ When the user specifically asks to lower similarity or AIGC:
 - `references/detection-report-rewrite-playbook.md` - how to triage plagiarism / AIGC reports into a rewrite brief
 - `references/draft-salvage-handoff-playbook.md` - how to plan partial replacement, legacy-asset retention, and runtime screenshots
 - `references/chinese-call-prompt-templates.md` - copy-paste Chinese prompts for planning and handoff tasks
+- For `.tex` delivery, also use `latex-coding-report-requirements` after this strategist step.
 
 ## Example Prompts
 
@@ -223,6 +230,7 @@ Produce:
 - a figure/table/screenshot rebuild plan
 - a list of unsupported claims to remove
 - a handoff package for `academic-paper-composer`
+- a target-format note: Word/DOCX finalization path or LaTeX template finalization path
 - when reports are supplied: a detection-report triage summary with hotspot pages, mapped sections, and recommended rewrite intensity
 
-Do not claim that the paper is submission-ready at this stage. That decision belongs to the composer + drawio + playwright + doc flow.
+Do not claim that the paper is submission-ready at this stage. That decision belongs to the target finalization flow: composer + drawio + playwright + doc for Word/DOCX, or LaTeX template revision + compile validation for `.tex`.
