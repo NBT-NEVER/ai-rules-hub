@@ -1,0 +1,4 @@
+interface:
+  display_name: "English Paper Vocabulary"
+  short_description: "Summarize marked vocabulary from English paper PDFs."
+  default_prompt: "Use $english-paper-vocabulary to extract gray-underlined single-word annotations from an English paper PDF and create the required vocabulary CSV."
