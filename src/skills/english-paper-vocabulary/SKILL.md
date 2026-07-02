@@ -1,28 +1,29 @@
 ---
 name: english-paper-vocabulary
-description: Summarize vocabulary from annotated English academic paper PDFs into CSV or Excel tables. Use when the user provides a Zotero-annotated English paper PDF and asks to extract only gray underline single-word annotations, add Chinese meanings, phonetics, original paper example sentences, and page numbers, then save the vocabulary summary to a specified location.
+description: Summarize English words and phrases from Zotero-annotated English academic paper PDFs into CSV vocabulary tables. Use when the user provides an annotated paper PDF and asks to extract only gray underline annotations whose PDF subtype is /Underline and color is [0.66666667, 0.66666667, 0.66666667], including marked words, terminology phrases, and sentence annotations, then add Chinese meanings, phonetics where applicable, original paper examples, page numbers, marked-counts, and save a paper-title-named .csv to the specified location.
 ---
 
 # English Paper Vocabulary
 
-Use this skill only for English-paper vocabulary extraction and summary tasks. The input is usually a Zotero-annotated PDF; the output is a CSV or Excel vocabulary table named after the paper title.
+Use this skill only for English-paper vocabulary and phrase extraction tasks. The input is a Zotero-annotated PDF; the output is a CSV vocabulary table named after the paper title.
 
 ## Required Reference
 
-Before doing the task, read `references/vocabulary-rules.md` completely. It contains the annotation filter, output schema, formatting rules, and the user's original requirements that must be preserved.
+Before doing the task, read `references/vocabulary-rules.md` completely. It contains the annotation filter, output schema, CSV rules, and the user's original requirements that must be preserved.
 
 ## Workflow
 
 1. Confirm the source PDF path and the required output directory.
 2. Extract the paper title from PDF metadata or the first page; use it to name the output file.
 3. Read PDF annotations and keep only gray underline annotations whose PDF subtype is `/Underline` and whose color is `[0.66666667, 0.66666667, 0.66666667]`.
-4. From those annotations, keep only single English words. Exclude terminology phrases, multi-word expressions, full sentences, punctuation-only selections, equations, abbreviations that are not words, and duplicated entries unless the user requests otherwise.
-5. For each retained word, collect the word, Chinese meaning with part of speech, standard phonetic transcription, original sentence from the paper, and page number.
-6. Write the result to the requested output location as a CSV by default, or as an Excel workbook when the user asks for visual formatting.
+4. Keep only the exact marked characters, words, phrases, or sentences. If a suffix, `ed`, or trailing phrase segment is not marked, discard that unmarked part.
+5. For each retained item, collect the item, Chinese meaning, phonetic transcription for single words, original paper example, page number, and marked-count when greater than 1.
+6. Write only a CSV to the requested output location.
 
 ## Quality Rules
 
-- Do not invent marked words, meanings, phonetics, example sentences, or page numbers.
-- If an annotation cannot be mapped to a clean single word or original sentence, report the uncertainty instead of silently guessing.
+- Do not invent marked content, meanings, phonetics, example sentences, page numbers, or counts.
+- Do not exclude marked terminology phrases or sentence annotations merely because they are not single words.
+- Do not add word class or phonetics for terminology phrases or sentence annotations, but translate them.
 - Preserve Chinese text as UTF-8 and use normal Unicode characters.
-- Keep the task scoped to vocabulary summary. Do not perform broad literature review, full translation, or paper summarization unless the user separately asks.
+- Keep the task scoped to vocabulary and phrase summary. Do not perform broad literature review, full translation, or paper summarization unless the user separately asks.

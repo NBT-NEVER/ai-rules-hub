@@ -59,7 +59,7 @@
 - `code-project-rules`
   负责 Python 项目结构、路径管理、中文注释、README、requirements、工程交付规范，以及同目录 README 中代码原理公式、LaTeX 变量说明和 GitHub 可渲染公式规则。
 - `english-paper-vocabulary`
-  负责从 Zotero 标注的英文论文 PDF 中提取灰色下划线单个英文单词标注，整理中文释义、音标、论文内例句和页码，并按论文名输出指定位置的 CSV 或 Excel 词汇表。
+  负责从 Zotero 标注的英文论文 PDF 中提取灰色下划线英文单词、术语短语和整句标注，整理中文释义、音标、论文内例句、页码和标注次数，并按论文名输出指定位置的 CSV 词汇表。
 - `git-github-remote-management`
   负责 Git 暂存、提交、分支、远端仓库、GitHub 推送/拉取、代理检查、超时处理、大文件推送策略、Git LFS 取舍，以及 Cursor attribution 清理与禁用规则。
 - `lab-report-writer`
