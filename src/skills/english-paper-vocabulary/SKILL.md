@@ -28,5 +28,8 @@ Before doing the task, read `references/vocabulary-rules.md` completely. It cont
 - Do not add word class or phonetics for terminology phrases or sentence annotations, but translate them.
 - For single-word entries, keep full Chinese word-class information and multiple common meanings after normalization; do not translate removed prefixes or suffixes.
 - Keep example fragments from the paper, separated by spaces, and no longer than 15 words. They need not be complete sentences, but must preserve enough context to understand the vocabulary item.
+- 例句列必须全部控制在 15 个英文词以内；例句不要求完整，只保留能体现语境的论文原文片段，且词与词之间必须有空格。
+- 第一列的单词要恢复为原形或更基础的词根形式，去掉 `ed`、`ing`、`s` 等时态、被动、进行时、复数形式，去掉 `no`/`non` 等否定前缀，并修复 PDF 截断导致的残缺词形。
+- 翻译必须对应第一列归一化后的词，不能翻译已经删去的前缀或后缀，并保留完整词性和完整的多种中文含义。
 - Preserve Chinese text as UTF-8 and use normal Unicode characters.
 - Keep the task scoped to vocabulary and phrase summary. Do not perform broad literature review, full translation, or paper summarization unless the user separately asks.
