@@ -1,0 +1,4 @@
+interface:
+  display_name: "Formula Character Expression"
+  short_description: "规范公式字符、Word/PPT LaTeX 与 README 公式。"
+  default_prompt: "Use $formula-character-expression to format formula characters, choose Word or PPT LaTeX style, and explain every variable clearly."

@@ -62,8 +62,10 @@
   负责从 Zotero 标注的英文论文 PDF 中提取灰色下划线英文单词、术语短语和整句标注，整理中文释义、音标、论文内例句、页码和标注次数，并按论文名输出指定位置的 CSV 词汇表。
 - `git-github-remote-management`
   负责 Git 暂存、提交、分支、远端仓库、GitHub 推送/拉取、代理检查、超时处理、大文件推送策略、Git LFS 取舍，以及 Cursor attribution 清理与禁用规则。
+- `formula-character-expression`
+  负责公式字符表示/表达、对话中公式的完全渲染版与 LaTeX 版顺序、Word/PPT LaTeX 版选择逻辑、变量解释格式，以及同目录 README 中 GitHub 可渲染公式规则的转接说明。
 - `lab-report-writer`
-  负责实验报告、算法说明、论文解读中的公式说明、实验报告正文公式排版、对话中公式的渲染版与 LaTeX 双版本展示、README 式项目介绍、方法说明、实现逻辑概述、结果分析以及 MathType 可复用 LaTeX 配套输出等中文说明性技术写作。
+  负责实验报告、算法说明、论文解读、README 式项目介绍、方法说明、实现逻辑概述和结果分析等中文说明性技术写作；涉及公式字符表示、渲染版与 LaTeX 版顺序、Word/PPT 格式选择时转接 `formula-character-expression`。
 - `latex-coding-report-requirements`
   也适合把学校模板抽取为可复用的通用 LaTeX 规则文档，并把这类长期规则沉淀到对应 `references/`。
   负责使用 LaTeX 编码撰写实验报告、课程论文、学术论文等场景下的模板约束；重点保证严格按照用户给定模板、现有 `.tex` 文件、学校格式或固定框架生成、修改和验证 LaTeX 代码，而不是擅自改成通用结构；同时明确 Word/DOCX 工作流不套用到 LaTeX 源文件。
@@ -118,7 +120,7 @@
 - 便于长期人工维护
 - 不混入无关 skill 的规则
 - 像论文公式解读、变量说明顺序、LaTeX 代码区分离这类长期输出模板，应优先放在对应 skill 的 `references/*-rules.md`
-- 实验报告正文公式排版与对话公式双版本展示放入 `lab-report-writer`；同目录 README 的公式与变量说明规则放入 `code-project-rules`；如入口命中范围发生变化，同步更新 `src/AGENTS.md`
+- 公式字符表示/表达、对话公式双版本展示、Word/PPT LaTeX 选择逻辑和变量说明格式放入 `formula-character-expression`；实验报告、论文解读和算法说明的正文解释仍放入 `lab-report-writer`；同目录 README 的工程文档规则仍放入 `code-project-rules`，公式字符规则由 `formula-character-expression` 转接并保持一致；如入口命中范围发生变化，同步更新 `src/AGENTS.md`
 
 ### 4. `src/skills/<skill>/agents/openai.yaml`
 
