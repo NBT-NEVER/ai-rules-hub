@@ -1,4 +1,4 @@
 interface:
-  display_name: "Formula Character Expression"
-  short_description: "规范公式字符、Word/PPT LaTeX 与 README 公式。"
-  default_prompt: "Use $formula-character-expression to format formula characters, choose Word or PPT LaTeX style, and explain every variable clearly."
+  display_name: "Formula Character Expression / 公式字符与二维公式排版"
+  short_description: "规范公式字符、Word/PPT LaTeX 与 README 公式，并确保角标二维渲染。"
+  default_prompt: "Use $formula-character-expression to format formula characters, choose Word or PPT LaTeX style, and explain every variable clearly. Render every indexed or structured mathematical item, use Unicode only for unadorned single symbols, preserve the rendered-then-LaTeX order, and choose the correct Word, PPT, or README format."
