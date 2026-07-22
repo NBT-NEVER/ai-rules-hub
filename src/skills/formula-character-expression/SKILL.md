@@ -10,7 +10,9 @@ Read `references/formula-character-rules.md` before outputting, explaining, or w
 ## Workflow
 
 1. Identify the target context: dialogue-only display, Word/DOCX-style document, PPT/PowerPoint-style document, or same-folder `README.md`.
-2. For formulas shown in dialogue, output two consecutive versions: first the fully rendered version, then the LaTeX version.
+2. For formulas shown in dialogue, output two consecutive complete versions: first the fully rendered version, then the LaTeX version.
+   - The fully rendered version must include the rendered formula, `其中：`, and rendered explanations for every variable appearing in the formula. Do not expose `$` characters, LaTeX delimiters, or raw LaTeX source in this version.
+   - The LaTeX version must include the formula source, `其中：`, and LaTeX-formatted explanations for the same variables. Do not omit variable explanations from the LaTeX version just because they already appeared in the rendered version.
 3. Before writing the dialogue LaTeX version, infer whether the user needs Word-style or PPT-style LaTeX. If the target cannot be determined, use PPT-style LaTeX by default.
 4. For Word, DOCX, reports, papers, principle explanations, and formula interpretation files, use Word-style LaTeX.
 5. For PPT, PowerPoint, slides, defense presentations, courseware, and copied-to-PPT content, use PPT-style LaTeX.

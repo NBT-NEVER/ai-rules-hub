@@ -43,7 +43,7 @@ When the user requests only one section, a short explanation, a README fragment,
 ## Formula Rules
 
 - 本 skill 只负责实验报告、算法说明、论文解读、方法说明和结果分析中的文字组织、逻辑解释与低模板感表达。
-- 公式字符如何表示、对话中公式是否先给渲染版再给 LaTeX 版、Word/PPT LaTeX 版如何选择、变量解释如何包裹，以及同目录 `README.md` 中公式如何写，统一参考 `formula-character-expression`。
+- 公式字符如何表示、对话中公式如何按“完整渲染版 + 完整 LaTeX 版”输出、Word/PPT LaTeX 版如何选择、变量解释如何包裹，以及同目录 `README.md` 中公式如何写，统一参考 `formula-character-expression`。这里的“完整”表示两个版本都要包含公式、`其中：` 和公式中全部变量的解释。
 - 写作时如果既要解释公式含义又要保证公式字符格式，应先用本 skill 组织解释内容，再按 `formula-character-expression` 的规则输出公式块和变量说明。
 
 ## Anti-AI Writing Rules
