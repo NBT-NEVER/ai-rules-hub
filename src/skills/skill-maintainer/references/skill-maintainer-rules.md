@@ -57,7 +57,7 @@
 - `chinese-encoding-guard`
   负责中文读写、防乱码、UTF-8 约束、中文中间文件链路与临时目录管理，覆盖 Word/DOCX、Markdown、纯文本和 LaTeX 源文件。
 - `code-project-rules`
-  负责 Python 项目结构、路径管理、中文注释、README、requirements、工程交付规范，以及同目录 README 中代码原理公式、LaTeX 变量说明和 GitHub 可渲染公式规则。
+  负责 Python 项目结构、路径管理、中文注释、requirements、工程交付规范，以及版本化项目中稳定 `README.md`、追加式 `improve.md`、随输出同步的 `out/outreadme.md` 三类文档职责；同时负责项目 Markdown 中代码原理公式、LaTeX 变量说明和 GitHub 可渲染公式规则。
 - `english-paper-vocabulary`
   负责从 Zotero 标注的英文论文 PDF 中提取灰色下划线英文单词、术语短语和整句标注，整理中文释义、音标、论文内例句、页码和标注次数，并按论文名输出指定位置的 CSV 词汇表。
 - `git-github-remote-management`
@@ -120,7 +120,7 @@
 - 便于长期人工维护
 - 不混入无关 skill 的规则
 - 像论文公式解读、变量说明顺序、LaTeX 代码区分离这类长期输出模板，应优先放在对应 skill 的 `references/*-rules.md`
-- 公式字符表示/表达、对话公式双版本展示、Word/PPT LaTeX 选择逻辑和变量说明格式放入 `formula-character-expression`；实验报告、论文解读和算法说明的正文解释仍放入 `lab-report-writer`；同目录 README 的工程文档规则仍放入 `code-project-rules`，公式字符规则由 `formula-character-expression` 转接并保持一致；如入口命中范围发生变化，同步更新 `src/AGENTS.md`
+- 公式字符表示/表达、对话公式双版本展示、Word/PPT LaTeX 选择逻辑和变量说明格式放入 `formula-character-expression`；实验报告、论文解读和算法说明的正文解释仍放入 `lab-report-writer`；版本化项目的 `README.md`、`improve.md`、`out/outreadme.md` 职责和 GitHub Markdown 公式落地规则放入 `code-project-rules`，公式字符规则由 `formula-character-expression` 转接并保持一致；如入口命中范围发生变化，同步更新 `src/AGENTS.md`
 
 ### 4. `src/skills/<skill>/agents/openai.yaml`
 

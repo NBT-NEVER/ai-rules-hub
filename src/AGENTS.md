@@ -17,6 +17,7 @@
 - 中文内容读写、防乱码、中文抽取/转存/写回、可复制到 Word 或写入 LaTeX 源文件的中文材料：`skills/chinese-encoding-guard`
 - 使用 LaTeX 编码撰写实验报告、课程论文、学术论文，且必须严格按给定模板生成、修改或验证 `.tex` 结构；也用于把学校模板抽取为可复用的通用 LaTeX 规则文档：`skills/latex-coding-report-requirements`
 - 代码编写、改代码、工程整理、Python 项目搭建、路径管理、中文注释规范、README 与 requirements 整理、同目录 README 中代码原理公式与变量说明：`skills/code-project-rules`
+- 版本化代码项目中稳定 `README.md`、追加式 `improve.md`、随输出同步的 `out/outreadme.md` 的职责划分、目录、链接和更新规则：`skills/code-project-rules`
 - 公式字符表示/表达、对话公式渲染版与 LaTeX 版、Word/PPT 公式变量说明格式、同目录 README 公式字符规则：`skills/formula-character-expression`
 - Git 暂存、提交、分支管理、远程 `origin` 配置、GitHub 推送/拉取、代理检查、推送超时、大文件入库、Git LFS、提交归因与项目级版本管理：`skills/git-github-remote-management`
 - 实验报告、算法说明、论文解读中的公式内容解释、方法说明、实现逻辑概述、课程式技术说明、结果分析、README 式中文项目介绍：`skills/lab-report-writer`；公式字符格式参考 `skills/formula-character-expression`
@@ -33,6 +34,7 @@
 ## 常见组合
 
 - 代码任务涉及中文注释、中文 README、中文输出：`skills/code-project-rules` + `skills/chinese-encoding-guard`
+- 版本化实验项目需要同步项目入口、改进日志和本次输出报告：`skills/code-project-rules` + `skills/chinese-encoding-guard`；输出报告涉及算法与结果分析时再加 `skills/lab-report-writer`，正式中文需降模板化时再加 `skills/academic-anti-ai-writing`
 - LaTeX 实验报告、课程论文或学术论文任务要求严格复用学校模板、老师模板、现有 `.tex` 样式或固定框架时：`skills/latex-coding-report-requirements`
 - Word/DOCX 定稿与 LaTeX 模板定稿分开处理：前者优先 `skills/academic-paper-composer` + `skills/chinese-encoding-guard` + `skills/recall-thinking`，后者优先 `skills/latex-coding-report-requirements` + `skills/chinese-encoding-guard`
 - 同一任务同时涉及实验报告正文公式字符和同目录 README 公式时：`skills/formula-character-expression` + `skills/lab-report-writer` + `skills/code-project-rules`

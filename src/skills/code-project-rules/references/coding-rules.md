@@ -89,17 +89,45 @@ Use these only when the task actually includes machine learning.
 - `main.py` should support command-line modes such as train only, predict only, and full pipeline when the task needs them.
 - Command-line arguments should be able to override defaults such as model name, batch size, epoch count, learning rate, max length, random seed, data directory, model directory, and output directory when these parameters exist.
 
-## README Rules
+## Versioned Project Documentation Rules
 
-- Describe the current project purpose and version.
-- Explain how to run the whole workflow and where the entry point is.
-- Describe the data format used by the program.
-- Show the directory layout for code, data, model, and output folders.
-- Explain the role of every Python file.
-- Explain file-to-file call relationships, key function call relationships, and important global configuration usage.
-- Explain the internal execution logic clearly enough that the user can understand how the project works.
-- When the project contains an algorithm, describe it in experiment-report style and tie it back to the code.
-- Document every output artifact, including figure names, axis meanings, table field meanings, and units when applicable.
+When a versioned experiment project uses `README.md`, `improve.md`, and `out/outreadme.md`, keep their responsibilities separate. Do not solve a documentation update by appending a second, conflicting description to an existing document. Reconcile changed facts point by point, preserve still-valid functional descriptions and historical records, and remove only content that has become incorrect or belongs in another document.
+
+### Shared requirements
+
+- All three documents must have a clear title hierarchy and a working Markdown table of contents.
+- Use repository-relative links for files and generated artifacts. Verify every link after files are regenerated, moved, renamed, or deleted.
+- State paths, units, data sources, version scope, and applicable boundaries explicitly. Do not invent values that are absent from code, logs, or result files.
+- Keep code, configuration, commands, output paths, model paths, and documentation mutually consistent.
+- Chinese Markdown files must remain UTF-8. Preserve existing useful content during rewrites and keep historical records in chronological order.
+
+### Stable `README.md`
+
+- Treat the version-directory `README.md` as the stable project entry document. Update it when the project version, enduring interface, directory structure, supported workflow, or durable storage convention changes; do not rewrite it for every routine run or regenerated figure.
+- Describe the current project purpose and version, environment and dependencies, data format, directory layout, code entry point, executable commands and modes, key file responsibilities, file-to-file relationships, important global configuration, output management, raw/processed data locations, and model-weight locations.
+- Give only a concise algorithm overview sufficient to orient a reader. Put complete derivations, per-run metrics, log excerpts, and figure-by-figure result interpretation in `out/outreadme.md`.
+- Explain the documentation split and tell readers when `README.md`, `improve.md`, and `out/outreadme.md` are updated.
+- Describe only the current version. Do not mention later versions or retain stale commands, parameter ranges, paths, or results as if they were current.
+
+### Append-only `improve.md`
+
+- Treat `improve.md` as an append-only engineering change log. Never delete or silently rewrite earlier records merely because a newer result supersedes them; corrections must be added as a new dated entry that identifies the corrected record.
+- Add one consistently formatted entry for each functional optimization or Git implementation commit. Record local date and time, milestone title, corresponding implementation commit hash, modified scope, prior problem, treatment, verified effect, and output impact.
+- Derive effects from tests, logs, diffs, or generated results. Distinguish measured effects from expected effects and write `未验证` when evidence is not yet available.
+- Avoid circular commit references: create the implementation commit first, then append an entry that cites that implementation hash in a following documentation commit. A documentation-only commit need not create an entry about itself unless it changes project behavior or output.
+- Preserve one table of contents and one recording convention section, followed by chronological historical entries. New entries use the established format rather than starting a second change-log structure.
+
+### Run-coupled `out/outreadme.md`
+
+- Treat `out/outreadme.md` as the detailed algorithm and current-output report. Update it whenever any file under `out/` changes, including retraining, reevaluation, data regeneration, file renaming, and small visualization corrections.
+- Part A must explain the code background, mathematical formulation, symbols, assumptions, data preprocessing and split policy, data flow, model input and output, complete model structure, algorithm equations, loss and gradient correction, online-update order, hyperparameter selection, stopping conditions, prediction intervals, and relevant implementation links at paper-level rigor.
+- Part B must extract a concise, traceable summary from the current log and structured result files: execution status, data scale, selected hyperparameters, training state, evaluation metrics, warnings, failures, and limitations. Never present historical values as current results.
+- Part C must enumerate every current table and visualization with repository-relative paths. For each artifact, document its source CSV/JSON/log, title, axes and units, legends or encodings, observed numerical pattern, relevant off-figure values, supported conclusion, and limitations. Embed SVG/GIF where Markdown supports them and link interactive HTML explicitly.
+- When an output cannot be committed because of data size, privacy, or model-weight policy, document its expected relative location, generation command, exclusion reason, and the small reproducibility metadata that remains versioned.
+- Verify the report against the final output inventory after generation. Broken links, references to deleted PNG files, outdated metrics, and undocumented new artifacts are delivery defects.
+
+### GitHub-renderable formulas in project Markdown
+
 - 在与代码位于同一文件夹的 `README.md` 中，如果代码原理部分涉及公式，统一使用 GitHub 可直接渲染的 LaTeX 格式。
 - 行内公式使用 `$...$`，独立成行的公式使用 `$$...$$`。
 - `README.md` 中不要使用实验报告正文那种“先写渲染公式、下一行再重复 LaTeX 源码”的双行格式。
@@ -108,6 +136,7 @@ Use these only when the task actually includes machine learning.
 - 如果一组连续公式共同描述同一算法流程、同一数值方法或同一推导步骤，可以连续展示整组公式，再在后面统一写一次 `其中：`。
 - 变量解释必须覆盖当前公式或当前公式组中的全部关键符号，不得只解释一部分。
 - `README.md` 中的公式目标是便于 GitHub 页面直接渲染、直接阅读和直接维护，因此优先使用标准 Markdown 加 LaTeX 写法。
+- 上述公式规则同样适用于 `improve.md` 和 `out/outreadme.md`；其中 `out/outreadme.md` 应承担详细公式推导和变量解释，稳定 `README.md` 只保留算法概览所需公式。
 
 ## requirements.txt Rules
 
