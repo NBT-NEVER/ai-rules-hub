@@ -11,14 +11,15 @@ Read `references/formula-character-rules.md` before outputting, explaining, or w
 
 1. Identify the target context: dialogue-only display, Word/DOCX-style document, PPT/PowerPoint-style document, or same-folder `README.md`.
 2. For formulas shown in dialogue, output two consecutive complete versions: first the fully rendered version, then the LaTeX version.
-   - The fully rendered version must include the rendered formula, `其中：`, and rendered explanations for every variable appearing in the formula. Do not expose `$` characters, LaTeX delimiters, or raw LaTeX source in this version.
-   - The LaTeX version must include the formula source, `其中：`, and LaTeX-formatted explanations for the same variables. Do not omit variable explanations from the LaTeX version just because they already appeared in the rendered version.
+   - The fully rendered version must include the rendered formula, a standalone `其中：` line, and one rendered variable explanation per following line. Do not expose `$`, LaTeX delimiters, backslash commands, braces used as source syntax, or raw LaTeX variable names in this version.
+   - The LaTeX version must include the formula source, a standalone `其中：` line, and one LaTeX-formatted variable explanation per following line for the same variables. Do not omit variable explanations from the LaTeX version just because they already appeared in the rendered version.
+   - Treat any `$...$`, `\(...\)`, `\[...\]`, `\mathbf`, `\mathrm`, `\sum`, `\frac`, source-style `_`/`^`, or similar source notation inside the fully rendered version as a formatting error; move it to the LaTeX version.
 3. Before writing the dialogue LaTeX version, infer whether the user needs Word-style or PPT-style LaTeX. If the target cannot be determined, use PPT-style LaTeX by default.
 4. For Word, DOCX, reports, papers, principle explanations, and formula interpretation files, use Word-style LaTeX.
 5. For PPT, PowerPoint, slides, defense presentations, courseware, and copied-to-PPT content, use PPT-style LaTeX.
 6. For formulas in a same-folder `README.md`, follow the README formula rules in this skill and keep them consistent with `code-project-rules`.
 7. Before formatting each mathematical item, distinguish an unadorned single symbol from structured notation. Use a Unicode mathematical character only when the item is one standalone symbol with no subscript, superscript, accent, relation, or operation.
-8. Treat any item containing a subscript, superscript, accent, relation, operator, or multi-part mathematical structure as rendered mathematics, including symbols listed after `其中：` and indexed symbols embedded in prose.
+8. Treat any item containing a subscript, superscript, accent, relation, operator, or multi-part mathematical structure as rendered mathematics, including symbols listed after `其中：` and indexed symbols embedded in prose. The rendered item must appear as rendered math, not as source text.
 9. Never imitate an index with `_`, `_(...)`, `^(...)`, ordinary parentheses, or an asterisk. Render indexed notation through the mathematical typesetting engine in the fully rendered version and preserve its standard LaTeX structure in the companion version.
 
 ## Boundary
