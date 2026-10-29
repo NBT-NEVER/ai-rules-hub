@@ -65,18 +65,20 @@
 - `formula-character-expression`
   负责公式字符表示/表达、对话中公式的完全渲染版与 LaTeX 版顺序、Word/PPT LaTeX 版选择逻辑、变量解释格式，以及同目录 README 中 GitHub 可渲染公式规则的转接说明。
 - `lab-report-writer`
-  负责实验报告、算法说明、论文解读、README 式项目介绍、方法说明、实现逻辑概述和结果分析等中文说明性技术写作；涉及公式字符表示、渲染版与 LaTeX 版顺序、Word/PPT 格式选择时转接 `formula-character-expression`。
+  负责实验报告、算法说明、论文解读、README 式项目介绍、方法说明、实现逻辑概述和结果分析等中文说明性技术写作；深度论文先消费 `paper-reading-zh` 的阅读判断卡；涉及公式字符表示、渲染版与 LaTeX 版顺序、Word/PPT 格式选择时转接 `formula-character-expression`。
 - `latex-coding-report-requirements`
   也适合把学校模板抽取为可复用的通用 LaTeX 规则文档，并把这类长期规则沉淀到对应 `references/`。
   负责使用 LaTeX 编码撰写实验报告、课程论文、学术论文等场景下的模板约束；重点保证严格按照用户给定模板、现有 `.tex` 文件、学校格式或固定框架生成、修改和验证 LaTeX 代码，而不是擅自改成通用结构；同时明确 Word/DOCX 工作流不套用到 LaTeX 源文件。
 - `literature-downloader`
-  负责中文文献检索、论文筛选、合法全文获取、批量采集、DOI/PMID 查询、影响因子/分区核验、下载日志整理，以及 Zotero/BibTeX 相关整理；明确禁止绕过付费墙或盗版下载。
+  负责中文文献检索、论文筛选、合法全文获取、批量采集、DOI/PMID 查询、影响因子/分区核验、下载日志整理，以及 Zotero/BibTeX 相关整理；深度阅读前产出题录卡和全文状态；明确禁止绕过付费墙或盗版下载。
 - `paper-reading-zh`
-  负责中文深度阅读单篇论文或小规模论文组，重建作者思路、解释方法机制、按问题链核对实验、识别脆弱假设、设计最小复现和最强反例，并提出有证据边界的后续研究；复用 `literature-downloader` 的全文、来源质量、合法获取、去重和组织规则，不复制下载脚本。
+  负责中文深度阅读单篇论文或小规模论文组，重建作者思路、解释方法机制、按问题链核对实验、识别脆弱假设、设计最小复现和最强反例，并提出有证据边界的后续研究；接收 `literature-downloader` 的题录卡和全文状态，不复制下载脚本；需要成文时把阅读判断卡交给 `lab-report-writer`，需要本科论文证据映射时交给 `academic-paper-strategist`。
 - `recall-thinking`
   负责复用长期经验、踩坑记录、核验方法和稳定操作链路，包括 Word/DOCX、LaTeX 源文件、中文写回、PowerShell 链路和高价值文件修改。
 - `skill-maintainer`
   负责维护整套 skill 体系本身，包括命名、分层、GitHub 仓库、构建脚本、安装脚本、同步部署流程、新 skill 的正确源目录落点，以及把新经验回写到 `recall-thinking`；在新增或大改 skill 时要联动参考系统 `skill-creator`。
+
+文献相关 skill 采用三段式职责链：`literature-downloader` 解决“找到并合法取得材料”，`paper-reading-zh` 解决“形成可核验的阅读判断”，`lab-report-writer` 或 `academic-paper-strategist` 解决“按目标文档写出或映射这些判断”。除非未来出现共同脚本、共同输入和共同输出，不能仅因主题相近就把三者合成一个 skill。
 
 ## 三、各层职责
 
