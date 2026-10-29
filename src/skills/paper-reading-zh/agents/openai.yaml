@@ -1,0 +1,6 @@
+interface:
+  display_name: "中文论文深度阅读"
+  short_description: "重建思路、拆解方法并检验论文证据"
+  default_prompt: "Use $paper-reading-zh 帮我深度阅读这篇论文，先给出研究问题，再分析方法、证据、脆弱假设和可复现实验。"
+policy:
+  allow_implicit_invocation: true

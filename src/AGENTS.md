@@ -28,6 +28,7 @@
 - 基于真实项目和已有草稿完成本科论文正文重写、定稿整理、截图替换、最终交付；主要负责 Word/DOCX 定稿流，LaTeX 模板定稿流转交 `skills/latex-coding-report-requirements`：`skills/academic-paper-composer`
 - 英文论文 PDF 中 Zotero 灰色下划线标注的英文单词、术语短语和整句标注提取，整理中文释义、音标、论文内例句、页码和标注次数，并输出指定位置的 CSV 词汇表：`skills/english-paper-vocabulary`
 - 中文文献检索、论文筛选、合法全文获取、批量文献采集、DOI/PMID 查询、期刊指标核验、下载日志与 Zotero/BibTeX 整理：`skills/literature-downloader`
+- 中文深度阅读单篇论文或小规模论文组，重建作者思路、拆解方法与实验、检查脆弱假设、设计最小复现和后续研究：`skills/paper-reading-zh`
 - Word/docx、LaTeX 源文件、PowerShell 中文链路、高价值文件覆盖、批量替换、需要先复用稳定经验再动手的任务：`skills/recall-thinking`
 - 新增、安装、删除、重命名、重构、同步或维护 `skills` 下任意 skill，以及沉淀经验到 skill：`skills/skill-maintainer`
 
@@ -43,6 +44,8 @@
 - 实验报告、技术说明、正文公式字符或对话公式说明需要减少 AI 味：`skills/formula-character-expression` + `skills/lab-report-writer` + `skills/academic-anti-ai-writing` + `skills/chinese-encoding-guard`
 - 论文从项目证据出发先规划再成稿：先 `skills/academic-paper-strategist`；Word/DOCX 定稿再用 `skills/academic-paper-composer`，LaTeX 模板定稿再用 `skills/latex-coding-report-requirements`；中文写回时加 `skills/chinese-encoding-guard`，高价值文件修改前加 `skills/recall-thinking`
 - 查论文、批量筛文献、优先合法下载 PDF/HTML/XML 全文、整理 DOI/PMID/Zotero/BibTeX：`skills/literature-downloader`
+- 先获取论文再做深度阅读、需要同时保留来源质量与证据边界：`skills/literature-downloader` + `skills/paper-reading-zh`
+- 深度论文阅读涉及公式、中文笔记或正式学术表达：`skills/paper-reading-zh` + `skills/formula-character-expression` + `skills/chinese-encoding-guard`；需要降模板化时再加 `skills/academic-anti-ai-writing`
 - 从已标注英文论文 PDF 提取灰色下划线英文单词、短语或整句标注并生成 CSV 词汇表：`skills/english-paper-vocabulary` + `skills/chinese-encoding-guard`
 - Word/docx 或高价值文件修改同时含中文内容：`skills/chinese-encoding-guard` + `skills/recall-thinking`
 - 安装或修改任意 skill 后，需要同步检查 `C:/Users/18030/.codex/AGENTS.md` 是否补充、删减或改写入口路由：`skills/skill-maintainer`
