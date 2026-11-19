@@ -14,6 +14,7 @@ Use this skill when the user asks for Chinese academic or engineering writing an
 3. Prefer concrete objects, data conditions, methods, variables, units, experimental settings, and limitations over broad background claims or empty praise.
 4. Remove template phrases, exaggerated claims, uniform paragraph endings, and unsupported “significance” statements.
 5. When information is missing, state the missing condition or write a bounded sentence instead of fabricating details.
+6. Apply the punctuation and connector rules in `references/anti-ai-writing-rules.md` to final Chinese prose. Rewrite the affected sentence to preserve causal and procedural relationships instead of mechanically deleting words, and check that recommended examples follow the same rules.
 
 ## Priority
 

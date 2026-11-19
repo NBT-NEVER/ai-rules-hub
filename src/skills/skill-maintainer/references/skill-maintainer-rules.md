@@ -49,7 +49,7 @@
 当前受管自定义 skill：
 
 - `academic-anti-ai-writing`
-  负责学术报告、论文、实验报告、正式工科说明等中文正式文本的降模板化、降 AI 味、增强证据边界与工程细节表达。
+  负责学术报告、论文、实验报告、正式工科说明等中文正式文本的降模板化、降 AI 味、增强证据边界与工程细节表达。用户指定的标点和连接句式偏好放在该 skill 的 `references/anti-ai-writing-rules.md`，推荐示例与规则保持一致，清理时保留动作依赖、技术条件、数据和引用。
 - `academic-paper-composer`
   负责基于真实项目和既有草稿完成本科软件/计算机类论文正文重写、Word/DOCX 定稿整理、截图替换、图表恢复和改稿说明；如果最终目标是 LaTeX 模板，应把 `.tex` 结构和编译验证交给 `latex-coding-report-requirements`。
 - `academic-paper-strategist`

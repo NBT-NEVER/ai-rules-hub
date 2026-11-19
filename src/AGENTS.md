@@ -23,7 +23,7 @@
 - 实验报告、算法说明、论文解读中的公式内容解释、方法说明、实现逻辑概述、课程式技术说明、结果分析、README 式中文项目介绍：`skills/lab-report-writer`；公式字符格式参考 `skills/formula-character-expression`
 - 在对话中解释公式、需要先给渲染公式再给 LaTeX 版本、并逐项解释变量：`skills/formula-character-expression`；如还需要课程式文字说明，再组合 `skills/lab-report-writer`
 - 与代码位于同一文件夹的 `README.md` 中需要写代码原理公式、LaTeX 变量说明或 GitHub 可渲染公式：`skills/code-project-rules` + `skills/formula-character-expression`
-- 学术报告、论文、摘要、结论、正式工科说明的降 AI 味、降模板化改写：`skills/academic-anti-ai-writing`
+- 学术报告、论文、摘要、结论、正式工科说明的降 AI 味、降模板化改写，以及指定标点与连接句式清理：`skills/academic-anti-ai-writing`
 - 基于真实项目做本科论文大纲、证据映射、章节规划、配图规划、保留/重写范围判断：`skills/academic-paper-strategist`
 - 基于真实项目和已有草稿完成本科论文正文重写、定稿整理、截图替换、最终交付；主要负责 Word/DOCX 定稿流，LaTeX 模板定稿流转交 `skills/latex-coding-report-requirements`：`skills/academic-paper-composer`
 - 英文论文 PDF 中 Zotero 灰色下划线标注的英文单词、术语短语和整句标注提取，整理中文释义、音标、论文内例句、页码和标注次数，并输出指定位置的 CSV 词汇表：`skills/english-paper-vocabulary`
